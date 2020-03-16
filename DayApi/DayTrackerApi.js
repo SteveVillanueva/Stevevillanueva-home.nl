@@ -32,35 +32,42 @@ const ratingSchema = new mongoose.Schema({
 // model
 var Rating = mongoose.model('Rating', ratingSchema, 'Ratings')
 
-// POST
+// post request for api
 _.post('/rate', async (ctx) => {
   const date = ctx.request.body.date;
   const rating = ctx.request.body.rating;
   const comment = ctx.request.body.comment;
-
+  
   const steve = new Rating({ date: date, rating: rating, comment: comment })
   steve.save(function (err, steve) {
     if (err) return console.error(err);
   });
+
+  console.log(ctx.request.body)
+  ctx.body = JSON.stringify(ctx.request.body);
 })
 
-// GET
-_.get('/rating', async (ctx) => {
-  Rating.find(function (err, Rating) {
-    if (err) return console.error(err);
-    console.log(Rating)
-    ctx.body = JSON.stringify(ctx.request.body);
-  })
+function getRating() {
+  return new Promise((resolve, reject) => {
+     const rating = Rating.find();
+     rating.exec((er, ratings) => {
+       if (er) {  reject(er);   }
+       else { resolve(ratings); }
+     });        
+  });
+}
+// get request for api
+_.get('/rating', async (ctx, next) => {
+  ctx.body = await getRating();
 })
 
-// PUT
+// put request for api
 _.put(`/update`, async (ctx) => {
   let doc = await Rating.findOne({ date: '2020-03-17' });
   await Rating.updateOne({ date: '2020-03-17' }, { date: '2021-03-17' })
   await doc.save();
 })
 
-// DELETE
 _.delete('/delete', async (ctx) => {
   Rating.deleteMany({ __v: 0 }, function (err) {
     if (err) return handleError(err);
