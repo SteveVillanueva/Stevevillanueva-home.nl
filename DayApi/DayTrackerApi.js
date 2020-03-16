@@ -20,19 +20,23 @@ db.once('open', _ => {
 db.on('error', err => {
   console.error('connection error:', err)
 })
+// schema
 const ratingSchema = new mongoose.Schema({
   name: String,
-  date: Date,
-  rating: Number,
+  // key
+  date: { type: Date, required: true, unique: true },
+  rating: { type: Number, required: true },
   comment: String
 })
 
-
-ratingSchema.path('Steve');
 var Rating = mongoose.model('Rating', ratingSchema)
 
+app.on('error', (err, ctx) => {
+  log.error('server error', err)
+})
+
 // post request for api
-_.post('/Score', async (ctx, next) => {
+_.post('/Score', async (ctx) => {
   const name = ctx.request.body.name;
   const date = ctx.request.body.date;
   const rating = ctx.request.body.rating;
@@ -43,23 +47,21 @@ _.post('/Score', async (ctx, next) => {
     rating: Number,
     comment: String
   }
-  
-  if(!name || !date || !rating || !comment) {
+
+  if (!name || !date || !rating || !comment) {
     console.log('please fill in data')
   } else {
-    const steve = new Rating({ name: name, date: date, rating: rating, comment:  comment})
+    const steve = new Rating({ name: name, date: date, rating: rating, comment: comment })
     steve.save(function (err, steve) {
       if (err) return console.error(err);
     });
   }
- 
-
   console.log(ctx.request.body)
   ctx.body = JSON.stringify(ctx.request.body);
 })
 
 // get request for api
-_.get('/Day', async (ctx, next) => {
+_.get('/Day', async (ctx) => {
   Rating.find(function (err, Rating) {
     if (err) return console.error(err);
     console.log(Rating)
@@ -67,14 +69,15 @@ _.get('/Day', async (ctx, next) => {
 })
 
 // put request for api
-_.put('/', (ctx, next) => {
-
+_.put(`/update`, async (ctx) => {
+  let doc = await Rating.findOne({ date: '2020-03-17' });
+  await Rating.updateOne({ date: '2020-03-17' }, { date: '2021-03-17' })
+  await doc.save();
 })
 
-_.delete('/delete', (ctx, next) => {
+_.delete('/delete', async (ctx) => {
   Rating.deleteMany({ __v: 0 }, function (err) {
     if (err) return handleError(err);
-    // deleted at most one tank document
   });
   console.log('deleted')
 })
