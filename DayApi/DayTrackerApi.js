@@ -33,12 +33,26 @@ var Rating = mongoose.model('Rating', ratingSchema)
 
 // post request for api
 _.post('/Score', async (ctx, next) => {
-  const steve = new Rating({ name: 'Steve', date: ctx.request.body.date, rating: ctx.request.body.rating, comment: ctx.request.body.rating   })
-  steve.save(function (err, steve) {
-    if (err) return console.error(err);
-
-  });
-
+  const name = ctx.request.body.name;
+  const date = ctx.request.body.date;
+  const rating = ctx.request.body.rating;
+  const comment = ctx.request.body.rating;
+  ctx.query = {
+    name: String,
+    date: Date,
+    rating: Number,
+    comment: String
+  }
+  
+  if(!name || !date || !rating || !comment) {
+    console.log('please fill in data')
+  } else {
+    const steve = new Rating({ name: name, date: date, rating: rating, comment:  comment})
+    steve.save(function (err, steve) {
+      if (err) return console.error(err);
+    });
+  }
+ 
 
   console.log(ctx.request.body)
   ctx.body = JSON.stringify(ctx.request.body);
@@ -58,7 +72,7 @@ _.put('/', (ctx, next) => {
 })
 
 _.delete('/delete', (ctx, next) => {
-  Rating.deleteOne({ __v: 0 }, function (err) {
+  Rating.deleteMany({ __v: 0 }, function (err) {
     if (err) return handleError(err);
     // deleted at most one tank document
   });
