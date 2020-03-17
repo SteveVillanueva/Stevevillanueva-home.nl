@@ -1,5 +1,5 @@
 export interface Ratings {
-    date: Date;
+    date: string;
     rating: number;
     comment: string;
 }

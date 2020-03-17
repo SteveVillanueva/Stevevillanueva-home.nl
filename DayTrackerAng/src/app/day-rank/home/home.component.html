@@ -1,4 +1,14 @@
 <div>
-    <li></li>
+  <li *ngFor="let rating of RatingGet">
+    <p>{{rating.date}}</p>
+    <p>{{rating.rating}}</p>
+    <p>{{rating.comment}}</p>
+  </li>
 </div>
-<button (click)="GetUsers()"></button>
+<button (click)="GetRating()">getRatings</button>
+<div>
+  <input type="text" [(ngModel)]="RatingPost.date">
+  <input type="text" [(ngModel)]="RatingPost.rating">
+  <input type="text" [(ngModel)]="RatingPost.comment">
+  <button (click)="PostRating()">Post</button>
+</div>

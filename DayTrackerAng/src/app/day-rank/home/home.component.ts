@@ -8,15 +8,27 @@ import { Ratings } from '../../Interfaces/Ratings'
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  RatingGet: Ratings[]
+  RatingPost: Ratings = {
+    date: '',
+    rating: 0,
+    comment: ''
+  }
   constructor(private rate: RateService) { }
 
   ngOnInit(): void {
   }
 
-  GetUsers(): void {
-    this.rate.Ratings().subscribe()
-    data => {console.log(data)}
+  GetRating(): void {
+    this.rate.getRatings().subscribe(
+      data => {this.RatingGet = data, console.log(data)}
+    )
+  }
+
+  PostRating(): void {
+    this.rate.postRatings(this.RatingPost).subscribe(
+      data => {console.log(data)}
+    )
   }
 
 }
