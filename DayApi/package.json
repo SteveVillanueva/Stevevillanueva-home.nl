@@ -4,6 +4,7 @@
   "description": "api for daytracker",
   "main": "DayTrackerApi.js",
   "dependencies": {
+    "@koa/cors": "^2.2.3",
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^8.0.8",

@@ -1,5 +1,6 @@
 export interface Ratings {
-    date: string;
+    date: Date;
     rating: number;
+    mood: string;
     comment: string;
 }
