@@ -25,10 +25,11 @@
   <input type="text" [(ngModel)]="RatingPost.comment">
   <button (click)="PostRating()">Post</button>
 </div>
+
 <nz-calendar>
   <ul *nzDateCell="let date" class="events">
     <ng-container *ngFor="let event of RatingGet">
-      <li nz-popover *ngIf="event.date.getTime() === date.getTime()" nzTitle="{{ event.comment }}"
+      <li nz-popover *ngIf="event.date.getDate() === date.getDate() && event.date.getMonth() === date.getMonth()" nzTitle="{{ event.comment }}"
         nzContent="{{ event.comment }}">
         <nz-badge [nzStatus]="event.comment" [nzText]="event.comment"></nz-badge>
       </li>

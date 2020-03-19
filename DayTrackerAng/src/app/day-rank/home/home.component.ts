@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RateService } from '../rate.service';
 import { Ratings } from '../../Interfaces/Ratings'
+import { PostRating } from '../../Interfaces/Ratings'
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { map } from 'rxjs/operators'
@@ -11,13 +12,14 @@ import { map } from 'rxjs/operators'
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  RatingGet: Ratings[]
-  RatingPost: Ratings = {
-    date: new Date(),
+  RatingGet: Array<Ratings>
+  RatingPost: PostRating = {
+    date: new Date,
     rating: 0,
     mood: '',
     comment: ''
   }
+  test: Date;
   constructor(public rate: RateService) { }
 
   ngOnInit(): void {
@@ -26,7 +28,11 @@ export class HomeComponent implements OnInit {
 
   GetRating(): void {
     this.rate.getRatings().subscribe(
-      data => { this.RatingGet = data, console.log(data) }
+      data => {
+      this.RatingGet = data, console.log(data), console.log(this.RatingGet.map(function (RatingGet) {
+        RatingGet.date = new Date(RatingGet.date);
+      }))
+      }
     )
   }
 

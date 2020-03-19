@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms'
 import { DayRankRoutingModule } from './day-rank-routing.module';
 import { HomeComponent } from './home/home.component';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
+import { DetailComponent } from './home/detail/detail.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, DetailComponent],
   imports: [
     CommonModule,
     DayRankRoutingModule,

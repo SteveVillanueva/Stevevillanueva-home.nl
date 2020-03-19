@@ -35,21 +35,7 @@ const ratingSchema = new mongoose.Schema({
 // model
 var Rating = mongoose.model('Rating', ratingSchema)
 
-// post request for api
-_.post('/rate', async (ctx, next) => {
-  const date = ctx.request.body.date;
-  const rating = ctx.request.body.rating;
-  const mood = ctx.request.body.mood;
-  const comment = ctx.request.body.comment;
 
-  const steve = new Rating({ date: date, rating: rating, mood: mood, comment: comment })
-  await steve.save(function (err, steve) {
-    if (err) return console.error(err);
-  });
-
-  console.log(ctx.request.body)
-  ctx.body = JSON.stringify(ctx.request.body);
-})
 
 function getRating() {
   return new Promise((resolve, reject) => {
@@ -60,21 +46,54 @@ function getRating() {
     });
   });
 }
-// get request for api
-_.get('/rating', async (ctx, next) => {
+
+// post request for api
+_.post('/rate', async (ctx, next) => {
+  const date = new Date(ctx.request.body.date);
+  const rating = ctx.request.body.rating;
+  const mood = ctx.request.body.mood;
+  const comment = ctx.request.body.comment;
+  date.setHours(2, 0, 0, 0);
+  const steve = new Rating({ date: date, rating: rating, mood: mood, comment: comment })
+  await steve.save(function (err, steve) {
+    if (err) return console.error(err);
+  });
+})
+
+// gets all dates
+_.get('/ratings', async (ctx, next) => {
   console.log(await getRating())
   ctx.body = await getRating();
 })
 
+// gets data on specific date
+_.get('/rating/:date', async (ctx, next) => {
+  let date = ctx.request.path;
+  date = date.split('/')[2];
+  ctx.body = await Rating.findOne({ date: date });
+})
 
 // put request for api
-_.put(`/update`, async (ctx, next) => {
-  let doc = await Rating.findOne({ date: '2020-03-17' });
-  await Rating.updateOne({ date: '2020-03-17' }, { date: '2021-03-17' })
+_.put(`/update/:date`, async (ctx, next) => {
+  let date = ctx.request.path
+  date = date.split('/')[2];
+  let doc = await Rating.findOne({ date: date });
+  await Rating.updateOne({ date: date }, { comment: ctx.request.body.comment })
   await doc.save();
 })
 
-_.delete('/delete', async (ctx, next) => {
+// deletes specific rating
+_.delete('/delete/:date', async (ctx, next) => {
+  let date = ctx.request.path
+  date = date.split('/')[2];
+  Rating.deleteOne({date: date}, function (err) {
+    if (err) return handleError(err);
+  }); 
+})
+
+// deletes all ratings
+// ! remove when done
+_.delete('/deleteAll', async (ctx, next) => {
   Rating.deleteMany({ __v: 0 }, function (err) {
     if (err) return handleError(err);
   });
