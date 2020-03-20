@@ -1,5 +1,4 @@
-export interface Ratings {
-  date: Date,
+export interface RatingUpdate {
   rating: number,
   mood: string,
   comment: string,

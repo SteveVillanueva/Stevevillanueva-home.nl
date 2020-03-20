@@ -1,4 +1,4 @@
-export interface Ratings {
+export interface PostRating {
   date: Date,
   rating: number,
   mood: string,

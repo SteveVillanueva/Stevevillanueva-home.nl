@@ -1,13 +1,4 @@
 <div>
-  <li *ngFor="let rating of RatingGet">
-    <p>{{rating.date}}</p>
-    <p>{{rating.rating}}</p>
-    <p>{{rating.mood}}</p>
-    <p>{{rating.comment}}</p>
-  </li>
-</div>
-<button (click)="GetRating()">getRatings</button>
-<div>
   <nz-date-picker [(ngModel)]="RatingPost.date"></nz-date-picker>
   <input type="text" [(ngModel)]="RatingPost.rating">
   <nz-select [(ngModel)]="RatingPost.mood" nzAllowClear nzPlaceHolder="Choose">
@@ -28,10 +19,14 @@
 
 <nz-calendar>
   <ul *nzDateCell="let date" class="events">
-    <ng-container *ngFor="let event of RatingGet">
-      <li nz-popover *ngIf="event.date.getDate() === date.getDate() && event.date.getMonth() === date.getMonth()" nzTitle="{{ event.comment }}"
-        nzContent="{{ event.comment }}">
-        <nz-badge [nzStatus]="event.comment" [nzText]="event.comment"></nz-badge>
+    <ng-container *ngFor="let event of RatingGet" class="square">
+      <li nz-popover *ngIf="event.date.getDate() === date.getDate() && event.date.getMonth() === date.getMonth()"
+        nzTitle="{{ event.mood }}" nzContent="{{ event.comment }}">
+        <a routerLink="detail/{{event.date | date:'yyyy-MM-dd'}}">
+          <nz-badge [nzStatus]="event.mood" [nzText]="'Mood: ' + event.mood"></nz-badge>
+          <br>
+          <nz-badge [nzStatus]="event.mood" [nzText]="'Rating: ' + event.rating"></nz-badge>
+        </a>
       </li>
     </ng-container>
   </ul>

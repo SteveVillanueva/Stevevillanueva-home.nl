@@ -1,0 +1,26 @@
+<p>detail works!</p>
+<button (click)="DeleteRating()">delete</button>
+<div>
+  <p>{{RatingGet.date}}</p>
+  <p>{{RatingGet.rating}}</p>
+  <p>{{RatingGet.mood}}</p>
+  <p>{{RatingGet.comment}}</p>
+</div>
+
+<div>
+  <input type="text" [(ngModel)]="RatingUpdate.rating">
+  <nz-select [(ngModel)]="RatingUpdate.mood" nzAllowClear nzPlaceHolder="Choose">
+    <nz-option nzValue="Angry" nzLabel="Angry"></nz-option>
+    <nz-option nzValue="Anxious" nzLabel="Anxious"></nz-option>
+    <nz-option nzValue="Hyper" nzLabel="Hyper"></nz-option>
+    <nz-option nzValue="Calm" nzLabel="Calm"></nz-option>
+    <nz-option nzValue="Sad" nzLabel="Sad"></nz-option>
+    <nz-option nzValue="Motivated" nzLabel="Motivated"></nz-option>
+    <nz-option nzValue="Happy" nzLabel="Happy"></nz-option>
+    <nz-option nzValue="Tired" nzLabel="Tired"></nz-option>
+    <nz-option nzValue="Stressed" nzLabel="Stressed"></nz-option>
+    <nz-option nzValue="Neutral" nzLabel="Neutral"></nz-option>
+  </nz-select>
+  <input type="text" [(ngModel)]="RatingUpdate.comment">
+  <button (click)="UpdateRating()">UPDATE</button>
+</div>

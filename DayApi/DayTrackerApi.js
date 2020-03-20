@@ -23,18 +23,30 @@ db.on('error', err => {
   console.error('connection error:', err)
 })
 
+
+
+app.use(async (ctx, next) => {
+  try {
+    await next()
+  } catch (err) {
+    console.log(err.status)
+    ctx.status = err.status || 400;
+    ctx.body = err.message;
+  }
+})
+
+
 // schema
 const ratingSchema = new mongoose.Schema({
   // key
   date: { type: Date, required: true, unique: true },
   rating: { type: Number, required: true },
-  mood: String,
+  mood: { type: String, required: true },
   comment: String
 })
 
 // model
 var Rating = mongoose.model('Rating', ratingSchema)
-
 
 
 function getRating() {
@@ -53,11 +65,16 @@ _.post('/rate', async (ctx, next) => {
   const rating = ctx.request.body.rating;
   const mood = ctx.request.body.mood;
   const comment = ctx.request.body.comment;
-  date.setHours(2, 0, 0, 0);
+  date.setUTCHours(0, 0, 0, 0)
   const steve = new Rating({ date: date, rating: rating, mood: mood, comment: comment })
+
   await steve.save(function (err, steve) {
-    if (err) return console.error(err);
+    if (err) {
+      ctx.throw(400);
+      return console.error(err);
+    }
   });
+  ctx.body = JSON.stringify(ctx.request.body);
 })
 
 // gets all dates
@@ -80,15 +97,17 @@ _.put(`/update/:date`, async (ctx, next) => {
   let doc = await Rating.findOne({ date: date });
   await Rating.updateOne({ date: date }, { comment: ctx.request.body.comment })
   await doc.save();
+  ctx.body = JSON.stringify(ctx.request.body);
 })
 
 // deletes specific rating
 _.delete('/delete/:date', async (ctx, next) => {
   let date = ctx.request.path
   date = date.split('/')[2];
-  Rating.deleteOne({date: date}, function (err) {
+  Rating.deleteOne({ date: date }, function (err) {
     if (err) return handleError(err);
-  }); 
+  });
+  ctx.body = JSON.stringify(ctx.request.body);
 })
 
 // deletes all ratings

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'
-import { DayRankRoutingModule } from './day-rank-routing.module';
-import { HomeComponent } from './home/home.component';
+import { DayRankRoutingModule } from './home-routing.module';
+import { HomeComponent } from './home.component';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
-import { DetailComponent } from './home/detail/detail.component';
+import { DetailComponent } from './detail/detail.component';
 
 
 
