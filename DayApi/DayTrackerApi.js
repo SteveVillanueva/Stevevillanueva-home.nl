@@ -90,6 +90,14 @@ _.get('/rating/:date', async (ctx, next) => {
   ctx.body = await Rating.findOne({ date: date });
 })
 
+_.get('/ratingMonth/:date', async (ctx, next) => {
+  let date = ctx.request.path;
+  date = date.split('/')[2];
+  date = new Date(date)
+  console.log(db.collection('Rating').find( {date: date}))
+ console.log(date)
+})
+
 // put request for api
 _.put(`/update/:date`, async (ctx, next) => {
   let date = ctx.request.path

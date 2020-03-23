@@ -1,0 +1,19 @@
+
+<div>
+  <h1>MoodBoard</h1>
+  <nz-calendar class="calendar">
+    <ul *nzDateCell="let date" class="events">
+      <ng-container *ngFor="let event of RatingGet" class="square">
+        <li nz-popover *ngIf="event.date.getDate() === date.getDate() && event.date.getMonth() === date.getMonth()"
+          nzTitle="{{ event.mood }}" nzContent="{{ event.comment }}">
+          <a routerLink="detail/{{event.date | date:'yyyy-MM-dd'}}">
+            <nz-badge [nzStatus]="event.mood" [nzText]="'Mood: ' + event.mood"></nz-badge>
+            <br>
+            <nz-badge [nzStatus]="event.mood" [nzText]="'Rating: ' + event.rating"></nz-badge>
+          </a>
+        </li>
+      </ng-container>
+    </ul>
+  </nz-calendar>
+</div>
+
