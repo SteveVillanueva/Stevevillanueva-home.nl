@@ -7,19 +7,24 @@
 </div>
 
 <div>
-  <input type="text" [(ngModel)]="RatingUpdate.rating">
-  <nz-select [(ngModel)]="RatingUpdate.mood" nzAllowClear nzPlaceHolder="Choose">
-    <nz-option nzValue="Angry" nzLabel="Angry"></nz-option>
-    <nz-option nzValue="Anxious" nzLabel="Anxious"></nz-option>
-    <nz-option nzValue="Hyper" nzLabel="Hyper"></nz-option>
-    <nz-option nzValue="Calm" nzLabel="Calm"></nz-option>
-    <nz-option nzValue="Sad" nzLabel="Sad"></nz-option>
-    <nz-option nzValue="Motivated" nzLabel="Motivated"></nz-option>
-    <nz-option nzValue="Happy" nzLabel="Happy"></nz-option>
-    <nz-option nzValue="Tired" nzLabel="Tired"></nz-option>
-    <nz-option nzValue="Stressed" nzLabel="Stressed"></nz-option>
-    <nz-option nzValue="Neutral" nzLabel="Neutral"></nz-option>
-  </nz-select>
-  <input type="text" [(ngModel)]="RatingUpdate.comment">
+  <div>
+    <p>mood</p>
+    <nz-select [(ngModel)]="RatingUpdate.mood" nzAllowClear nzPlaceHolder="Choose">
+      <nz-option nzValue="Angry" nzLabel="Angry"></nz-option>
+      <nz-option nzValue="Anxious" nzLabel="Anxious"></nz-option>
+      <nz-option nzValue="Hyper" nzLabel="Hyper"></nz-option>
+      <nz-option nzValue="Calm" nzLabel="Calm"></nz-option>
+      <nz-option nzValue="Sad" nzLabel="Sad"></nz-option>
+      <nz-option nzValue="Motivated" nzLabel="Motivated"></nz-option>
+      <nz-option nzValue="Happy" nzLabel="Happy"></nz-option>
+      <nz-option nzValue="Tired" nzLabel="Tired"></nz-option>
+      <nz-option nzValue="Stressed" nzLabel="Stressed"></nz-option>
+      <nz-option nzValue="Neutral" nzLabel="Neutral"></nz-option>
+    </nz-select>
+    <p>rating</p>
+    <nz-input-number [(ngModel)]="RatingUpdate.rating" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+  </div>
+  <textarea nz-input placeholder="Autosize height with minimum and maximum number of lines"
+    [(ngModel)]="RatingUpdate.comment" [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
   <button (click)="UpdateRating()">UPDATE</button>
 </div>

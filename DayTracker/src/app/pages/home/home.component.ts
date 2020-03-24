@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Ratings } from '../../Interfaces/RatingGet';
 import { PostRating } from '../../Interfaces/RatingPost';
-import{ RatingService } from '../rating.service'
+import { RatingService } from '../rating.service';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +9,13 @@ import{ RatingService } from '../rating.service'
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  RatingGet: Array<Ratings>
+  RatingGet: Array<Ratings>;
   RatingPost: PostRating = {
     date: new Date(),
     rating: null,
     mood: '',
     comment: ''
-  }
+  };
   constructor(public rate: RatingService) { }
 
   ngOnInit(): void {
@@ -24,11 +24,14 @@ export class HomeComponent implements OnInit {
   GetRating(): void {
     this.rate.getRatings().subscribe(
       data => {
-        this.RatingGet = data, console.log(data), console.log(this.RatingGet.map(function (RatingGet) {
-          RatingGet.date = new Date(RatingGet.date);
-          console.log(RatingGet.date)
-        }))
+        this.RatingGet = data,
+          console.log(data),
+          // tslint:disable-next-line: only-arrow-functions
+          this.RatingGet.map(function (RatingGet) {
+            RatingGet.date = new Date(RatingGet.date);
+            console.log(RatingGet.date);
+          });
       }
-    )
+    );
   }
 }

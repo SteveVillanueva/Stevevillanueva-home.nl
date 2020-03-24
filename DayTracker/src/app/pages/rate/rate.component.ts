@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RatingService } from '../rating.service'
+import { RatingService } from '../rating.service';
 
-import { PostRating } from '../../Interfaces/RatingPost'
+import { PostRating } from '../../Interfaces/RatingPost';
 
 @Component({
   selector: 'app-rate',
@@ -14,7 +14,7 @@ export class RateComponent implements OnInit {
     rating: null,
     mood: '',
     comment: ''
-  }
+  };
   constructor(public rate: RatingService) { }
 
   ngOnInit(): void {
@@ -22,10 +22,10 @@ export class RateComponent implements OnInit {
 
   PostRating(): void {
     this.rate.postRatings(this.RatingPost).subscribe(
-      data => { console.log(data) },
-      err => { console.log(err) },
-      () => {  }
-    )
+      data => { console.log(data); },
+      err => { console.log(err); },
+      () => { }
+    );
   }
 
 }
