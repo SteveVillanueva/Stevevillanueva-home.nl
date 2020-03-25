@@ -20,7 +20,7 @@ export class StatisticComponent implements OnInit {
   }
 
   onChange(result: Date): void {
-    console.log(this.datePipe.transform( result,'yyyy-MM-dd  h:mm:ss'));
+    console.log(this.datePipe.transform( result, 'yyyy-MM-dd  h:mm:ss'));
   }
 
 }
