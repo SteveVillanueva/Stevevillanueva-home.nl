@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { en_US, zh_CN, NzI18nService } from 'ng-zorro-antd';
@@ -9,7 +10,7 @@ import { en_US, zh_CN, NzI18nService } from 'ng-zorro-antd';
 })
 export class StatisticComponent implements OnInit {
   month: Date;
-  constructor() { }
+  constructor(private datePipe: DatePipe) { }
 
   ngOnInit(): void {
   }
@@ -19,7 +20,7 @@ export class StatisticComponent implements OnInit {
   }
 
   onChange(result: Date): void {
-    console.log('onChange: ', result);
+    console.log(this.datePipe.transform( result,'yyyy-MM-dd  h:mm:ss'));
   }
 
 }

@@ -1,137 +1,24 @@
-
-const Koa = require('koa')
+const Koa = require('koa');
 const app = new Koa();
-const koa_router = require('koa-router');
+const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser');
 const cors = require('@koa/cors');
-var mongoose = require('mongoose');
-const MongoClient = require('mongodb').MongoClient
-
+ 
 app.use(bodyParser());
 app.use(cors());
-const _ = koa_router();
-// url for db
-const url = 'mongodb://127.0.0.1:27017/DayTracker'
-
-mongoose.connect(url, { useNewUrlParser: true });
-
-const db = mongoose.connection
-db.once('open', _ => {
-  console.log('Database connected:', url);
-})
-
-db.on('error', err => {
-  console.error('connection error:', err);
-})
-
-
-
-app.use(async (ctx, next) => {
-  try {
-    await next();
-  } catch (err) {
-    console.log(err.status);
-    ctx.status = err.status || 400;
-    ctx.body = err.message;
-  }
-})
-
-
-// schema
-const ratingSchema = new mongoose.Schema({
-  // key
-  date: { type: Date, required: true, unique: true },
-  rating: { type: Number, required: true },
-  mood: { type: String, required: true },
-  comment: String
-})
-
-// model
-var Rating = mongoose.model('Rating', ratingSchema);
 
 // post request for api
-_.post('/rate', async (ctx, next) => {
-  const date = new Date(ctx.request.body.date);
-  const rating = ctx.request.body.rating;
-  const mood = ctx.request.body.mood;
-  const comment = ctx.request.body.comment;
-  date.setUTCHours(0, 0, 0, 0);
-  const steve = new Rating({ date: date, rating: rating, mood: mood, comment: comment });
+const router = new Router();
+require('./routes/get')({ router });
+require('./routes/post')({ router });
+require('./routes/put')({ router });
+require('./routes/delete')({ router });
+app.use(router.routes());
+app.use(router.allowedMethods());
 
-  await steve.save(function (err, steve) {
-    if (err) {
-      ctx.throw(400);
-      return console.error(err);
-    }
-  });
-  ctx.body = JSON.stringify(ctx.request.body);
-})
-function getRating() {
-  return new Promise((resolve, reject) => {
-    const rating = Rating.find();
-    rating.exec((er, ratings) => {
-      if (er) { reject(er); }
-      else { resolve(ratings); }
-    });
-  });
-}
 
-_.get('/ratings', async (ctx, next) => {
-  console.log(await getRating())
-  ctx.body = await getRating();
-})
+app.use(router.routes());
+app.use(router.allowedMethods());
 
-_.get('/ratingMonth/:date', async (ctx, next) => {
-  let date = ctx.request.path;
-  date = date.split('/')[2];
-  ctx.body = await Rating.find({
-    date: { $lt: new Date(), $gt: new Date('2020-03-10') }
-  })
-})
-
-// gets data on specific date
-_.get('/rating/:date', async (ctx, next) => {
-  let date = ctx.request.path;
-  date = date.split('/')[2];
-  ctx.body = await Rating.findOne({ date: date });
-})
-
-_.get('/ratingMonth/:date', async (ctx, next) => {
-  let date = ctx.request.path;
-  date = date.split('/')[2];
-  date = new Date(date)
-  console.log(db.collection('Rating').find({ date: date }))
-  console.log(date)
-})
-
-// put request for api
-_.put(`/update/:date`, async (ctx, next) => {
-  let date = ctx.request.path
-  date = date.split('/')[2];
-  let doc = await Rating.findOne({ date: date });
-  await Rating.updateOne({ date: date }, { comment: ctx.request.body.comment })
-  await doc.save();
-  ctx.body = JSON.stringify(ctx.request.body);
-})
-
-// deletes specific rating
-_.delete('/delete/:date', async (ctx, next) => {
-  let date = ctx.request.path
-  date = date.split('/')[2];
-  Rating.deleteOne({ date: date }, function (err) {
-    if (err) return handleError(err);
-  });
-  ctx.body = JSON.stringify(ctx.request.body);
-})
-
-// deletes all ratings
-// ! remove when done
-_.delete('/deleteAll', async (ctx, next) => {
-  Rating.deleteMany({ __v: 0 }, function (err) {
-    if (err) return handleError(err);
-  });
-  console.log('deleted')
-})
-
-app.use(_.routes());
+app.use(router.routes());
 app.listen(3000);
