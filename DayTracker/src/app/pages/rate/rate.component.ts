@@ -21,6 +21,7 @@ export class RateComponent implements OnInit {
   }
 
   PostRating(): void {
+    console.log(this.RatingPost.date);
     this.rate.postRatings(this.RatingPost).subscribe(
       data => { console.log(data); },
       err => { console.log(err); },

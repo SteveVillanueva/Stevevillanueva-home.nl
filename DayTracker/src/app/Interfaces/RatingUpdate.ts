@@ -1,5 +1,5 @@
 export interface RatingUpdate {
-  rating: number,
-  mood: string,
-  comment: string,
+  rating: number;
+  mood: string;
+  comment: string;
 }

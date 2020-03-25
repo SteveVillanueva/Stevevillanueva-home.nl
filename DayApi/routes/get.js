@@ -8,17 +8,26 @@ module.exports = ({ router }) => {
   })
 
   // get request for all ratings of month
-  router.get('/ratingMonth/:date', async (ctx, next) => {
-    let date = ctx.request.path;
-    date = date.split('/')[2];
+  router.get('/ratingMonth/:month', async (ctx, next) => {
+    console.log(ctx.request.body)
+    let month = ctx.request.path;
+    month = month.split('/')[2];
+    month = month.replace(/\%/g, " ");
+    month = month.split(' ')[0];
+    month = new Date(month)
+    let start = new Date(month.getFullYear(), month.getMonth(), 1);
+    let end = new Date(month.getFullYear(), month.getMonth() + 1, 0);
+    console.log(month)
     ctx.body = await Rating.find({
-      date: { $lt: new Date(), $gt: new Date('2020-03-10') }
+      date: { $lt: end, $gt: start }
     })
+
   })
 
   // get request for rating on specific date
   router.get('/rating/:date', async (ctx, next) => {
     let date = ctx.request.path;
+
     date = date.split('/')[2];
     ctx.body = await Rating.findOne({ date: date });
   })

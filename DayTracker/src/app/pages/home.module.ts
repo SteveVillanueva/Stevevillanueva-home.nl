@@ -7,7 +7,7 @@ import { StatisticComponent } from './statistic/statistic.component';
 import { RateComponent } from './rate/rate.component';
 import { DetailComponent } from './home/detail/detail.component';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,7 +22,7 @@ import { FormsModule } from '@angular/forms'
     RateComponent
   ],
   providers: [
-      DatePipe
+    DatePipe
   ]
 })
 export class HomeModule { }
