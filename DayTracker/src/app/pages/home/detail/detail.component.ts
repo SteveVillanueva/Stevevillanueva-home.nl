@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RatingService } from '../../rating.service';
 import { Router } from '@angular/router';
 import { Ratings } from '../../../Interfaces/RatingGet';
-import { RatingUpdate } from '../../../Interfaces/RatingUpdate'
+import { RatingUpdate } from '../../../Interfaces/RatingUpdate';
 
 @Component({
   selector: 'app-detail',
@@ -15,13 +15,13 @@ export class DetailComponent implements OnInit {
     rating: null,
     mood: '',
     comment: ''
-  }
+  };
 
   RatingUpdate: RatingUpdate = {
     rating: null,
     mood: '',
     comment: ''
-  }
+  };
   constructor(public rate: RatingService, private route: Router) { }
 
   ngOnInit(): void {
@@ -32,24 +32,24 @@ export class DetailComponent implements OnInit {
   GetDetailRating(): void {
     const date = this.route.url.substr(this.route.url.indexOf('-') + -4);
     this.rate.getDetailRating(date).subscribe(
-      data => {this.RatingGet = data, console.log(data)}
-    )
+      data => {this.RatingGet = data, console.log(data); }
+    );
   }
 
   // deletes a rating
   DeleteRating(): void {
     const date = this.route.url.substr(this.route.url.indexOf('-') + -4);
     this.rate.deleteRating(date).subscribe(
-      data => {console.log(data)}
-    )
+      data => {console.log(data); }
+    );
   }
 
   // updates a rating
   UpdateRating(): void {
     const date = this.route.url.substr(this.route.url.indexOf('-') + -4);
     this.rate.updateRating(date, this.RatingUpdate).subscribe(
-      data => {console.log(data)}
-    )
+      data => {console.log(data); }
+    );
   }
 
 }

@@ -14,6 +14,8 @@ import { Ratings } from 'src/app/Interfaces/RatingGet';
 export class StatisticComponent implements OnInit {
   month: string;
   RatingGet: Array<Ratings>;
+  ratingLength: number;
+  percent: number;
   constructor(private datePipe: DatePipe, public rate: RatingService) { }
 
   ngOnInit(): void {
@@ -27,7 +29,11 @@ export class StatisticComponent implements OnInit {
     this.month = this.datePipe.transform(result, 'yyyy-MM-dd h:mm:ss');
     console.log('month is ' + this.month);
     this.rate.getMonth(this.month).subscribe(
-      data => { this.RatingGet = data; }
+      data => { this.RatingGet = data, this.ratingLength = data.length; },
+      err => { console.log(err); },
+      () => {
+        this.percent = this.ratingLength / 31 * 100;
+      }
     );
   }
 }
