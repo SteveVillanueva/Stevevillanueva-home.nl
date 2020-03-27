@@ -15,7 +15,10 @@ export class StatisticComponent implements OnInit {
   month: string;
   RatingGet: Array<Ratings>;
   ratingLength: number;
+  ratingTotal: number;
   percent: number;
+  averageNeeded: number;
+  averageRating: number;
   constructor(private datePipe: DatePipe, public rate: RatingService) { }
 
   ngOnInit(): void {
@@ -32,8 +35,22 @@ export class StatisticComponent implements OnInit {
       data => { this.RatingGet = data, this.ratingLength = data.length; },
       err => { console.log(err); },
       () => {
-        this.percent = this.ratingLength / 31 * 100;
+        this.ratingTotal = this.totalRating();
+        this.averageNeeded = this.ratingLength * 5;
+        console.log(this.averageNeeded);
+        this.averageRating = this.ratingTotal / this.ratingLength;
+        this.percent = Math.round(this.ratingLength / 31 * 100);
+        console.log(this.ratingLength);
+        console.log(this.averageRating);
       }
     );
+  }
+
+  totalRating() {
+    let total = 0;
+    for (let data of this.RatingGet) {
+      total += data.rating;
+    }
+    return total;
   }
 }

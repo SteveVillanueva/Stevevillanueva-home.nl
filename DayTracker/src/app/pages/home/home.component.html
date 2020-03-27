@@ -4,7 +4,7 @@
   <nz-calendar class="calendar">
     <ul *nzDateCell="let date" class="events">
       <ng-container *ngFor="let event of RatingGet" class="square">
-        <li nz-popover *ngIf="event.date.getDate() === date.getDate() && event.date.getMonth() === date.getMonth()"
+        <li nz-popover *ngIf="event.date.getDate() === date.getDate() && event.date.getMonth() === date.getMonth() && event.date.getFullYear() === date.getFullYear()"
           nzTitle="{{ event.mood }}" nzContent="{{ event.comment }}">
           <a routerLink="detail/{{event.date | date:'yyyy-MM-dd'}}">
             <nz-badge [nzStatus]="event.mood" [nzText]="'Mood: ' + event.mood"></nz-badge>

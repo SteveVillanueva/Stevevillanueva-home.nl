@@ -1,9 +1,19 @@
-<p>statistic works!</p>
-<nz-month-picker [(ngModel)]="month" [nzPlaceHolder]=month (ngModelChange)="onChange($event)"></nz-month-picker>
-<button (click)="getMonth()">get month</button>
-<p>days rated so far</p>
-<nz-progress [nzPercent]="this.percent"></nz-progress>
-<nz-progress [nzPercent]="50" nzStatus="active"></nz-progress>
-<nz-progress [nzPercent]="70" nzStatus="exception"></nz-progress>
-<nz-progress [nzPercent]="100"></nz-progress>
-<nz-progress [nzPercent]="50" [nzShowInfo]="false"></nz-progress>
+<div>
+  <p>statistic works!</p>
+  <div>
+    <nz-month-picker [(ngModel)]="month" [nzPlaceHolder]=month (ngModelChange)="onChange($event)"></nz-month-picker>
+    <button (click)="getMonth()">get month</button>
+    <div class="statistic">
+      <div>
+        <nz-statistic [nzValue]="this.averageRating | number: '1.0-2'" [nzTitle]="'Average'" [nzSuffix]="''"
+        [nzValueStyle]="{ color: '#3F8600' }" class="average">
+      </nz-statistic>
+      </div>
+      <div>
+        <p>Days Rated</p>
+        <nz-progress [nzPercent]="this.percent"></nz-progress>
+      </div>
+
+    </div>
+  </div>
+</div>
