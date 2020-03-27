@@ -1,19 +1,48 @@
 <div>
-  <p>statistic works!</p>
-  <div>
-    <nz-month-picker [(ngModel)]="month" [nzPlaceHolder]=month (ngModelChange)="onChange($event)"></nz-month-picker>
-    <button (click)="getMonth()">get month</button>
+  <h1>Statistic</h1>
+  <div class="underLine"></div>
+  <nz-card>
     <div class="statistic">
-      <div>
-        <nz-statistic [nzValue]="this.averageRating | number: '1.0-2'" [nzTitle]="'Average'" [nzSuffix]="''"
-        [nzValueStyle]="{ color: '#3F8600' }" class="average">
-      </nz-statistic>
-      </div>
-      <div>
+      <div class="ratePercent">
+        <nz-statistic [nzValue]="this.averageRating | number: '1.0-2'" [nzTitle]="'Average'"
+          [nzValueStyle]="{ color: '#3F8600' }" class="average">
+        </nz-statistic>
         <p>Days Rated</p>
-        <nz-progress [nzPercent]="this.percent"></nz-progress>
+        <nz-progress [nzPercent]="this.percent" nzSize="small" nzType="circle"></nz-progress>
+        <nz-month-picker [(ngModel)]="month" [nzPlaceHolder]=month (ngModelChange)="onChange($event)"></nz-month-picker>
       </div>
-
+      <div class="moodPercent">
+        <p>Angry</p>
+        <nz-progress [nzPercent]="calculatePercent(this.moods.Angry)" nzSize="small"
+          [nzStrokeColor]="{ '0%': 'red', '100%': 'red' }"></nz-progress>
+        <p>Anxious</p>
+        <nz-progress [nzPercent]="calculatePercent(this.moods.Anxious)" nzSize="small"
+          [nzStrokeColor]="{ '0%': '#FFFF00', '100%': '#FFFF00' }"></nz-progress>
+        <p>hyper</p>
+        <nz-progress [nzPercent]="calculatePercent(this.moods.Hyper)" nzSize="small"
+          [nzStrokeColor]="{ '0%': '#FFFF00', '100%': '#FFFF00' }"></nz-progress>
+        <p>Calm</p>
+        <nz-progress [nzPercent]="calculatePercent(this.moods.Calm)" nzSize="small"
+          [nzStrokeColor]="{ '0%': '#FFFF00', '100%': '#FFFF00' }"></nz-progress>
+        <p>Sad</p>
+        <nz-progress [nzPercent]="calculatePercent(this.moods.Sad)" nzSize="small"
+          [nzStrokeColor]="{ '0%': '#FFFF00', '100%': '#FFFF00' }"></nz-progress>
+        <p>Motivated</p>
+        <nz-progress [nzPercent]="calculatePercent(this.moods.Motivated)" nzSize="small"
+          [nzStrokeColor]="{ '0%': '#FFFF00', '100%': '#FFFF00' }"></nz-progress>
+        <p>Happy</p>
+        <nz-progress [nzPercent]="calculatePercent(this.moods.Happy)" nzSize="small"
+          [nzStrokeColor]="{ '0%': 'orange', '100%': 'orange' }"></nz-progress>
+        <p>Tired</p>
+        <nz-progress [nzPercent]="calculatePercent(this.moods.Tired)" nzSize="small"
+          [nzStrokeColor]="{ '0%': '#FFFF00', '100%': '#FFFF00' }"></nz-progress>
+        <p>Stressed</p>
+        <nz-progress [nzPercent]="calculatePercent(this.moods.Stressed)" nzSize="small"
+          [nzStrokeColor]="{ '0%': '#FFFF00', '100%': '#FFFF00' }"></nz-progress>
+        <p>Neutral</p>
+        <nz-progress [nzPercent]="calculatePercent(this.moods.Neutral)" nzSize="small"
+          [nzStrokeColor]="{ '0%': '#FFFF00', '100%': '#FFFF00' }"></nz-progress>
+      </div>
     </div>
-  </div>
+  </nz-card>
 </div>

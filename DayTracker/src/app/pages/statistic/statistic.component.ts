@@ -6,6 +6,7 @@ import { en_US, zh_CN, NzI18nService } from 'ng-zorro-antd';
 
 import { RatingService } from '../rating.service';
 import { Ratings } from 'src/app/Interfaces/RatingGet';
+import { Moods } from '../../Interfaces/Moods';
 @Component({
   selector: 'app-statistic',
   templateUrl: './statistic.component.html',
@@ -19,6 +20,18 @@ export class StatisticComponent implements OnInit {
   percent: number;
   averageNeeded: number;
   averageRating: number;
+  moods: Moods = {
+    Angry: 0,
+    Anxious: 0,
+    Hyper: 0,
+    Calm: 0,
+    Sad: 0,
+    Motivated: 0,
+    Happy: 0,
+    Tired: 0,
+    Stressed: 0,
+    Neutral: 0,
+  };
   constructor(private datePipe: DatePipe, public rate: RatingService) { }
 
   ngOnInit(): void {
@@ -36,12 +49,9 @@ export class StatisticComponent implements OnInit {
       err => { console.log(err); },
       () => {
         this.ratingTotal = this.totalRating();
-        this.averageNeeded = this.ratingLength * 5;
-        console.log(this.averageNeeded);
+        this.moods = this.totalMoods();
         this.averageRating = this.ratingTotal / this.ratingLength;
         this.percent = Math.round(this.ratingLength / 31 * 100);
-        console.log(this.ratingLength);
-        console.log(this.averageRating);
       }
     );
   }
@@ -53,4 +63,62 @@ export class StatisticComponent implements OnInit {
     }
     return total;
   }
+
+  calculatePercent(mood: number) {
+    const moodPercent = Math.round(mood / this.ratingLength * 100);
+    return moodPercent;
+  }
+
+  totalMoods() {
+    this.moods = {
+      Angry: 0,
+      Anxious: 0,
+      Hyper: 0,
+      Calm: 0,
+      Sad: 0,
+      Motivated: 0,
+      Happy: 0,
+      Tired: 0,
+      Stressed: 0,
+      Neutral: 0,
+    };
+    for (let data of this.RatingGet) {
+      if (data.mood === 'Angry') {
+        this.moods.Angry++;
+      }
+      if (data.mood === 'Anxious') {
+        this.moods.Anxious++;
+      }
+      if (data.mood === 'Hyper') {
+        this.moods.Hyper += 1
+      }
+      if (data.mood === 'Calm') {
+        this.moods.Calm++;
+      }
+      if (data.mood === 'Sad') {
+        this.moods.Sad++;
+      }
+      if (data.mood === 'Motivated') {
+        this.moods.Motivated++;
+      }
+      if (data.mood === 'Happy') {
+        this.moods.Happy++;
+      }
+      if (data.mood === 'Tired') {
+        this.moods.Tired++;
+      }
+      if (data.mood === 'Stressed') {
+        this.moods.Stressed++;
+      }
+      if (data.mood === 'Neutral') {
+        this.moods.Neutral++;
+      }
+    }
+    console.log(this.moods);
+    this.moods = this.moods
+    return this.moods;
+  }
 }
+
+
+

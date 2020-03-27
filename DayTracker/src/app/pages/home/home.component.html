@@ -1,15 +1,18 @@
 
 <div>
   <h1>MoodBoard</h1>
+  <div class="underLine"></div>
+
   <nz-calendar class="calendar">
     <ul *nzDateCell="let date" class="events">
       <ng-container *ngFor="let event of RatingGet" class="square">
         <li nz-popover *ngIf="event.date.getDate() === date.getDate() && event.date.getMonth() === date.getMonth() && event.date.getFullYear() === date.getFullYear()"
-          nzTitle="{{ event.mood }}" nzContent="{{ event.comment }}">
+          nzTitle="{{ event.mood }}" nzContent="{{ event.comment }}"  [nzPopoverContent]="contentTemplate">
           <a routerLink="detail/{{event.date | date:'yyyy-MM-dd'}}">
             <nz-badge [nzStatus]="event.mood" [nzText]="'Mood: ' + event.mood"></nz-badge>
             <br>
             <nz-badge [nzStatus]="event.mood" [nzText]="'Rating: ' + event.rating"></nz-badge>
+
           </a>
         </li>
       </ng-container>
@@ -17,3 +20,6 @@
   </nz-calendar>
 </div>
 
+<ng-template #contentTemplate>
+  <a></a>
+</ng-template>

@@ -1,36 +1,40 @@
 <div class="postRate">
+  <h1>Rate</h1>
+  <div class="underLine"></div>
   <div class="postRateCard">
-    <h1>Rate</h1>
-    <div class="date">
-      <p>Date</p>
-      <nz-date-picker [(ngModel)]="RatingPost.date"></nz-date-picker>
-    </div>
-    <div class="rate">
-      <div>
-        <p>mood</p>
-        <nz-select [(ngModel)]="RatingPost.mood" nzAllowClear nzPlaceHolder="Choose" class="mood">
-          <nz-option nzValue="Angry" nzLabel="Angry"></nz-option>
-          <nz-option nzValue="Anxious" nzLabel="Anxious"></nz-option>
-          <nz-option nzValue="Hyper" nzLabel="Hyper"></nz-option>
-          <nz-option nzValue="Calm" nzLabel="Calm"></nz-option>
-          <nz-option nzValue="Sad" nzLabel="Sad"></nz-option>
-          <nz-option nzValue="Motivated" nzLabel="Motivated"></nz-option>
-          <nz-option nzValue="Happy" nzLabel="Happy"></nz-option>
-          <nz-option nzValue="Tired" nzLabel="Tired"></nz-option>
-          <nz-option nzValue="Stressed" nzLabel="Stressed"></nz-option>
-          <nz-option nzValue="Neutral" nzLabel="Neutral"></nz-option>
-        </nz-select>
+    <nz-card>
+
+      <div class="date">
+        <p>Date</p>
+        <nz-date-picker [(ngModel)]="RatingPost.date"></nz-date-picker>
       </div>
       <div>
         <p>Rating</p>
         <nz-input-number [(ngModel)]="RatingPost.rating" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
       </div>
-    </div>
-    <div class="comment">
-      <p>comment</p>
-      <textarea nz-input placeholder="Autosize height with minimum and maximum number of lines"
-      [(ngModel)]="RatingPost.comment" [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
-    </div>
-    <button (click)="PostRating()">Post</button>
+      <div class="rate">
+        <div>
+          <p>mood</p>
+          <nz-select [(ngModel)]="RatingPost.mood" nzAllowClear nzPlaceHolder="Choose" class="mood">
+            <nz-option nzValue="Angry" nzLabel="Angry"></nz-option>
+            <nz-option nzValue="Anxious" nzLabel="Anxious"></nz-option>
+            <nz-option nzValue="Hyper" nzLabel="Hyper"></nz-option>
+            <nz-option nzValue="Calm" nzLabel="Calm"></nz-option>
+            <nz-option nzValue="Sad" nzLabel="Sad"></nz-option>
+            <nz-option nzValue="Motivated" nzLabel="Motivated"></nz-option>
+            <nz-option nzValue="Happy" nzLabel="Happy"></nz-option>
+            <nz-option nzValue="Tired" nzLabel="Tired"></nz-option>
+            <nz-option nzValue="Stressed" nzLabel="Stressed"></nz-option>
+            <nz-option nzValue="Neutral" nzLabel="Neutral"></nz-option>
+          </nz-select>
+        </div>
+      </div>
+      <div class="comment">
+        <p>comment</p>
+        <textarea nz-input placeholder="Autosize height with minimum and maximum number of lines"
+          [(ngModel)]="RatingPost.comment" [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
+      </div>
+      <button (click)="PostRating()">Post</button>
+    </nz-card>
   </div>
 </div>

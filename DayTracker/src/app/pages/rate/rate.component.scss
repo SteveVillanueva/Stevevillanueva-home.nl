@@ -5,7 +5,7 @@
 }
 
 .mood {
-  width: 130px;
+  width: 150px;
 }
 
 nz-input-number {
@@ -17,14 +17,7 @@ nz-input-number {
   flex-direction: column;
   width: 20%;
   background-color: #f0f0f0;
-  border: 1px rgba(172, 172, 172, 0.274) solid;
-
-  .date {
-  }
-
-  .rate {
-    display: flex;
-    flex-direction: row;
-  }
-
+  border: 1px rgba(0, 0, 0, 0.25) solid;
 }
+
+
