@@ -32,7 +32,7 @@ export class DetailComponent implements OnInit {
   GetDetailRating(): void {
     const date = this.route.url.substr(this.route.url.indexOf('-') + -4);
     this.rate.getDetailRating(date).subscribe(
-      data => {this.RatingGet = data, console.log(data); }
+      data => { this.RatingGet = data, console.log(data); }
     );
   }
 
@@ -40,7 +40,9 @@ export class DetailComponent implements OnInit {
   DeleteRating(): void {
     const date = this.route.url.substr(this.route.url.indexOf('-') + -4);
     this.rate.deleteRating(date).subscribe(
-      data => {console.log(data); }
+      data => { console.log(data); },
+      err => { console.log(err); },
+      () => { this.route.navigateByUrl('home'); }
     );
   }
 
@@ -48,7 +50,9 @@ export class DetailComponent implements OnInit {
   UpdateRating(): void {
     const date = this.route.url.substr(this.route.url.indexOf('-') + -4);
     this.rate.updateRating(date, this.RatingUpdate).subscribe(
-      data => {console.log(data); }
+      data => { console.log(data); },
+      err => { console.log(err); },
+      () => { this.route.navigateByUrl('home'); }
     );
   }
 

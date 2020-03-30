@@ -3,7 +3,7 @@ const app = new Koa();
 const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser');
 const cors = require('@koa/cors');
- 
+
 app.use(bodyParser());
 app.use(cors());
 
@@ -16,7 +16,9 @@ require('./routes/delete')({ router });
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-
+app.on('error', err => {
+    log.error('server error', err)
+});
 app.use(router.routes());
 app.use(router.allowedMethods());
 

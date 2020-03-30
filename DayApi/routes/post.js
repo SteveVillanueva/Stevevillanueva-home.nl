@@ -12,12 +12,18 @@ module.exports = ({ router }) => {
         const comment = ctx.request.body.comment;
         date.setUTCHours(0, 0, 0, 0);
         const steve = new Rating({ date: date, rating: rating, mood: mood, comment: comment });
+        ctx.body = JSON.stringify(ctx.request.body);
         await steve.save(function (err, steve) {
             if (err) {
-                ctx.throw(400);
-                return console.error(err);
+                ctx.body = JSON.stringify(err)
+                console.log('error')
+               
+            }
+            else {
+                console.log('test2')
+                ctx.body = JSON.stringify(ctx.request.body);
             }
         });
-        ctx.body = JSON.stringify(ctx.request.body);
+        
     })
 }

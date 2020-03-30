@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RatingService } from '../rating.service';
-
+import { Router } from '@angular/router';
 import { PostRating } from '../../Interfaces/RatingPost';
 
 @Component({
@@ -15,7 +15,7 @@ export class RateComponent implements OnInit {
     mood: '',
     comment: ''
   };
-  constructor(public rate: RatingService) { }
+  constructor(public rate: RatingService,  private route: Router) { }
 
   ngOnInit(): void {
   }
@@ -25,7 +25,7 @@ export class RateComponent implements OnInit {
     this.rate.postRatings(this.RatingPost).subscribe(
       data => { console.log(data); },
       err => { console.log(err); },
-      () => { }
+      () => { this.route.navigateByUrl('home'); }
     );
   }
 
