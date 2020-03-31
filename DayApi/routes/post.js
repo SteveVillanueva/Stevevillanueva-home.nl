@@ -1,9 +1,16 @@
 const Router = require('koa-router');
-
+const Koa = require('koa');
+const app = new Koa();
 const router = new Router()
 const Rating = require('./schema')
 // middleware that is specific to this router
-
+app.use(async (ctx, next) => {
+    try {
+        await next()
+    } catch (e) {
+        handleErrorHere(e)
+    }
+})
 module.exports = ({ router }) => {
     router.post('/rate', async (ctx, next) => {
         const date = new Date(ctx.request.body.date);
@@ -15,8 +22,7 @@ module.exports = ({ router }) => {
         ctx.body = JSON.stringify(ctx.request.body);
         await steve.save(function (err, steve) {
             if (err) {
-                ctx.body = JSON.stringify(err)
-                console.log('error')
+                ctx.throw(400,'Error Message');
                
             }
             else {

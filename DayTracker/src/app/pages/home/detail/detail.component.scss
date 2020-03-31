@@ -5,3 +5,24 @@ h1 {
 .selector {
   width: 130px;
 }
+.buttonDiv {
+  display: flex;
+  flex-direction: row;
+
+  div {
+    display: flex;
+    border: none;
+    font-size: 16px;
+    align-self: center;
+    justify-self: center;
+    flex-direction: row;
+  }
+}
+button {
+  display: flex;
+  border: none;
+  font-size: 16px;
+  align-self: center;
+  justify-self: center;
+  flex-direction: row;
+}

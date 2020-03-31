@@ -8,10 +8,11 @@ import { RateComponent } from './rate/rate.component';
 import { DetailComponent } from './home/detail/detail.component';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
 import { FormsModule } from '@angular/forms';
+import { ResultComponent } from './result/result.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, StatisticComponent, RateComponent, DetailComponent],
+  declarations: [HomeComponent, StatisticComponent, RateComponent, DetailComponent, ResultComponent],
   imports: [
     CommonModule,
     FormsModule,

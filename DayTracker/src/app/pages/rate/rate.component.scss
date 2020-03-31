@@ -18,6 +18,19 @@ nz-input-number {
   width: 20%;
   background-color: #f0f0f0;
   border: 1px rgba(0, 0, 0, 0.25) solid;
+  align-self: center;
+  justify-self: center;
 }
 
+.postBtn:active + .postRate {
+  display: none;
+  background-color: red;
+  visibility: hidden;
+}
+.postBtn {
+  margin-top: 20px;
+}
 
+.postRate {
+  height: 100%;
+}

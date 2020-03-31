@@ -2,6 +2,14 @@
   <h1>Detail</h1>
   <div class="underLine"></div>
   <nz-card>
+    <div class="buttonDiv">
+      <div (click)="UpdateRating()" class="save">
+        <i nz-icon nzType="save" nzTheme="outline" style="font-size: 25px"></i><button>Save</button>
+      </div>
+      <div (click)="DeleteRating()">
+        <i nz-icon nzType="delete" nzTheme="outline" style="font-size: 25px"></i><button>Delete</button>
+      </div>
+    </div>
     <div>
       <h4>Date</h4>
       <p>{{RatingGet.date}}</p>
@@ -32,10 +40,7 @@
       </div>
       <textarea nz-input placeholder="Autosize height with minimum and maximum number of lines"
         [(ngModel)]="RatingUpdate.comment" [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
-      <div>
-        <button (click)="UpdateRating()">UPDATE</button>
-        <button (click)="DeleteRating()">delete</button>
-      </div>
+
     </div>
   </nz-card>
 </div>

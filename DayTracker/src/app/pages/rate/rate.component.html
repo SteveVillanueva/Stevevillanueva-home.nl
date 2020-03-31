@@ -5,16 +5,16 @@
     <nz-card>
 
       <div class="date">
-        <p>Date</p>
+        <h4>* Date</h4>
         <nz-date-picker [(ngModel)]="RatingPost.date"></nz-date-picker>
       </div>
       <div>
-        <p>Rating</p>
+        <h4>* Rating</h4>
         <nz-input-number [(ngModel)]="RatingPost.rating" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
       </div>
       <div class="rate">
         <div>
-          <p>mood</p>
+          <h4>* mood</h4>
           <nz-select [(ngModel)]="RatingPost.mood" nzAllowClear nzPlaceHolder="Choose" class="mood">
             <nz-option nzValue="Angry" nzLabel="Angry"></nz-option>
             <nz-option nzValue="Anxious" nzLabel="Anxious"></nz-option>
@@ -30,11 +30,12 @@
         </div>
       </div>
       <div class="comment">
-        <p>comment</p>
+        <h4>comment</h4>
         <textarea nz-input placeholder="Autosize height with minimum and maximum number of lines"
           [(ngModel)]="RatingPost.comment" [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
       </div>
-      <button (click)="PostRating()">Post</button>
+        <button nz-button (click)="createMessage('error')" (click)="PostRating()" class="postBtn">Post</button>
+
     </nz-card>
   </div>
 </div>

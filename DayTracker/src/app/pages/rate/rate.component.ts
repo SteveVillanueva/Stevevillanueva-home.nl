@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RatingService } from '../rating.service';
 import { Router } from '@angular/router';
 import { PostRating } from '../../Interfaces/RatingPost';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-rate',
@@ -15,7 +16,8 @@ export class RateComponent implements OnInit {
     mood: '',
     comment: ''
   };
-  constructor(public rate: RatingService,  private route: Router) { }
+  postMsg: string;
+  constructor(public rate: RatingService, private route: Router, private message: NzMessageService) { }
 
   ngOnInit(): void {
   }
@@ -25,8 +27,20 @@ export class RateComponent implements OnInit {
     this.rate.postRatings(this.RatingPost).subscribe(
       data => { console.log(data); },
       err => { console.log(err); },
-      () => { this.route.navigateByUrl('home'); }
+      () => { this.InputCheck('error'); }
     );
+  }
+
+  InputCheck(type: string): void {
+    if (!this.RatingPost.rating || !this.RatingPost.date || !this.RatingPost.mood) {
+      this.postMsg = 'please fill in all fields';
+      this.message.create(type, `Please fill in all fields`);
+    } else {
+      this.route.navigateByUrl('result/400');
+    }
+  }
+  createMessage(type: string): void {
+
   }
 
 }

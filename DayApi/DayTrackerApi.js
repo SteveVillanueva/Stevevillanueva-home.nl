@@ -16,9 +16,13 @@ require('./routes/delete')({ router });
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-app.on('error', err => {
-    log.error('server error', err)
-});
+app.use(async (ctx, next) => {
+    try {
+        await next()
+    } catch (e) {
+        handleErrorHere(e)
+    }
+})
 app.use(router.routes());
 app.use(router.allowedMethods());
 
