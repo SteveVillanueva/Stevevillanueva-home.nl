@@ -4,13 +4,14 @@
   <nz-card>
     <div class="buttonDiv">
       <div (click)="UpdateRating()" class="save">
-        <i nz-icon nzType="save" nzTheme="outline" style="font-size: 25px"></i><button>Save</button>
+        <button><i nz-icon nzType="save" nzTheme="outline" style="font-size: 25px"></i>Save</button>
       </div>
+      <div class="line"></div>
       <div (click)="DeleteRating()">
-        <i nz-icon nzType="delete" nzTheme="outline" style="font-size: 25px"></i><button>Delete</button>
+        <button><i nz-icon nzType="delete" nzTheme="outline" style="font-size: 25px"></i>Delete</button>
       </div>
     </div>
-    <div>
+    <div class="dataDisplay">
       <h4>Date</h4>
       <p>{{RatingGet.date}}</p>
       <h4>Rating</h4>
@@ -20,9 +21,9 @@
       <h4>Comment</h4>
       <p>{{RatingGet.comment}}</p>
     </div>
-    <div>
+    <div class="dataEdit">
       <div>
-        <p>mood</p>
+        <h4>mood</h4>
         <nz-select [(ngModel)]="RatingUpdate.mood" nzAllowClear nzPlaceHolder="Choose" class="selector">
           <nz-option nzValue="Angry" nzLabel="Angry"></nz-option>
           <nz-option nzValue="Anxious" nzLabel="Anxious"></nz-option>
@@ -35,9 +36,10 @@
           <nz-option nzValue="Stressed" nzLabel="Stressed"></nz-option>
           <nz-option nzValue="Neutral" nzLabel="Neutral"></nz-option>
         </nz-select>
-        <p>rating</p>
+        <h4>rating</h4>
         <nz-input-number [(ngModel)]="RatingUpdate.rating" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
       </div>
+      <h4>comment</h4>
       <textarea nz-input placeholder="Autosize height with minimum and maximum number of lines"
         [(ngModel)]="RatingUpdate.comment" [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
 

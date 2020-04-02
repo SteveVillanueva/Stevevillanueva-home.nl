@@ -14,6 +14,7 @@ import { Moods } from '../../Interfaces/Moods';
 })
 export class StatisticComponent implements OnInit {
   month: string;
+  year: string;
   RatingGet: Array<Ratings>;
   ratingLength: number;
   ratingTotal: number;
@@ -37,16 +38,11 @@ export class StatisticComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getMonth(): void {
-    console.log(Date);
-  }
-
-  onChange(result: Date): void {
+  onChangeMonth(result: Date): void {
     this.month = this.datePipe.transform(result, 'yyyy-MM-dd h:mm:ss');
-    console.log('month is ' + this.month);
     this.rate.getMonth(this.month).subscribe(
       data => { this.RatingGet = data, this.ratingLength = data.length; },
-      err => { console.log(err); },
+      err => { },
       () => {
         this.ratingTotal = this.totalRating();
         this.moods = this.totalMoods();
@@ -55,6 +51,21 @@ export class StatisticComponent implements OnInit {
       }
     );
   }
+
+  onChangeYear(result: Date): void {
+    this.year = this.datePipe.transform(result, 'yyyy-MM-dd h:mm:ss');
+    this.rate.getYear(this.year).subscribe(
+      data => { this.RatingGet = data, this.ratingLength = data.length; },
+      err => { },
+      () => {
+        this.ratingTotal = this.totalRating();
+        this.moods = this.totalMoods();
+        this.averageRating = this.ratingTotal / this.ratingLength;
+        this.percent = Math.round(this.ratingLength / 365 * 100);
+      }
+    );
+  }
+
 
   totalRating() {
     let total = 0;
@@ -114,7 +125,7 @@ export class StatisticComponent implements OnInit {
         this.moods.Neutral++;
       }
     }
-    console.log(this.moods);
+
     this.moods = this.moods
     return this.moods;
   }

@@ -25,11 +25,9 @@ export class HomeComponent implements OnInit {
     this.rate.getRatings().subscribe(
       data => {
         this.RatingGet = data,
-          console.log(data),
           // tslint:disable-next-line: only-arrow-functions
           this.RatingGet.map(function (RatingGet) {
             RatingGet.date = new Date(RatingGet.date);
-            console.log(RatingGet.date);
           });
       }
     );

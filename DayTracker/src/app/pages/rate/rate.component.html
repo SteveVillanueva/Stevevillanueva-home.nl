@@ -3,7 +3,6 @@
   <div class="underLine"></div>
   <div class="postRateCard">
     <nz-card>
-
       <div class="date">
         <h4>* Date</h4>
         <nz-date-picker [(ngModel)]="RatingPost.date"></nz-date-picker>
@@ -34,8 +33,10 @@
         <textarea nz-input placeholder="Autosize height with minimum and maximum number of lines"
           [(ngModel)]="RatingPost.comment" [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
       </div>
-        <button nz-button (click)="createMessage('error')" (click)="PostRating()" class="postBtn">Post</button>
+      <button nz-button (click)="createMessage('error')" (click)="PostRating()" class="postBtn">Post</button>
+
 
     </nz-card>
+
   </div>
 </div>

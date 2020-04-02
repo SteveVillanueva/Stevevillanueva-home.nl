@@ -3,6 +3,7 @@ import { RatingService } from '../rating.service';
 import { Router } from '@angular/router';
 import { PostRating } from '../../Interfaces/RatingPost';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-rate',
@@ -42,5 +43,4 @@ export class RateComponent implements OnInit {
   createMessage(type: string): void {
 
   }
-
 }

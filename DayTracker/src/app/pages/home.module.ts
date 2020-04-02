@@ -7,8 +7,9 @@ import { StatisticComponent } from './statistic/statistic.component';
 import { RateComponent } from './rate/rate.component';
 import { DetailComponent } from './home/detail/detail.component';
 import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResultComponent } from './result/result.component';
+
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ResultComponent } from './result/result.component';
     CommonModule,
     FormsModule,
     NgZorroAntdModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    ReactiveFormsModule
   ],
   exports: [
     RateComponent

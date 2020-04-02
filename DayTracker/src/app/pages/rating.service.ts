@@ -37,4 +37,8 @@ export class RatingService {
   getMonth(Month: string): Observable<Ratings[]> {
     return this.http.get<Ratings[]>(`ratingMonth/${Month}`);
   }
+
+  getYear(Year: string): Observable<Ratings[]> {
+    return this.http.get<Ratings[]>(`ratingYear/${Year}`);
+  }
 }

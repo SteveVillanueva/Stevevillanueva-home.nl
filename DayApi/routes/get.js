@@ -9,7 +9,6 @@ module.exports = ({ router }) => {
 
   // get request for all ratings of month
   router.get('/ratingMonth/:month', async (ctx, next) => {
-    console.log(ctx.request.body)
     let month = ctx.request.path;
     month = month.split('/')[2];
     month = month.replace(/\%/g, " ");
@@ -17,7 +16,20 @@ module.exports = ({ router }) => {
     month = new Date(month)
     let start = new Date(month.getFullYear(), month.getMonth(), 1);
     let end = new Date(month.getFullYear(), month.getMonth() + 1, 0);
-    console.log(month)
+    ctx.body = await Rating.find({
+      date: { $lt: end, $gt: start }
+    })
+  })
+
+  router.get('/ratingYear/:year', async (ctx, next) => {
+    console.log(ctx.request.body);
+    let year = ctx.request.path;
+    year = year.split('/')[2];
+    year = year.replace(/\%/g, " ");
+    year = year.split(' ')[0];
+    year = new Date(year);
+    let start = new Date(year.getFullYear(), 1, -29);
+    let end = new Date(year.getFullYear(), 11, 31);
     ctx.body = await Rating.find({
       date: { $lt: end, $gt: start }
     })

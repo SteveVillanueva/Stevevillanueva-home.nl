@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Ratings } from '../../../Interfaces/RatingGet';
 import { RatingUpdate } from '../../../Interfaces/RatingUpdate';
 
+
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -32,7 +33,7 @@ export class DetailComponent implements OnInit {
   GetDetailRating(): void {
     const date = this.route.url.substr(this.route.url.indexOf('-') + -4);
     this.rate.getDetailRating(date).subscribe(
-      data => { this.RatingGet = data, console.log(data); }
+      data => { this.RatingGet = data; }
     );
   }
 
@@ -40,8 +41,8 @@ export class DetailComponent implements OnInit {
   DeleteRating(): void {
     const date = this.route.url.substr(this.route.url.indexOf('-') + -4);
     this.rate.deleteRating(date).subscribe(
-      data => { console.log(data); },
-      err => { console.log(err); },
+      data => { },
+      err => { },
       () => { this.route.navigateByUrl('home'); }
     );
   }
@@ -50,8 +51,8 @@ export class DetailComponent implements OnInit {
   UpdateRating(): void {
     const date = this.route.url.substr(this.route.url.indexOf('-') + -4);
     this.rate.updateRating(date, this.RatingUpdate).subscribe(
-      data => { console.log(data); },
-      err => { console.log(err); },
+      data => { },
+      err => { },
       () => { this.route.navigateByUrl('home'); }
     );
   }

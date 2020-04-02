@@ -7,10 +7,14 @@ h1 {
   align-items: center;
   justify-content: center;
   flex-direction: row;
+  height: 100%;
+
 }
 
 .moodPercent {
-  width: 300px;
+  padding: 24px;
+  width: 500px;
+  border: 1px solid rgba(170, 170, 170, 0.4);
 }
 
 .ratePercent {
@@ -18,5 +22,14 @@ h1 {
   flex-direction: column;
   align-items: center;
   border: 1px solid rgba(170, 170, 170, 0.4);
+  flex-direction: column;
+  justify-content: space-between;
   padding: 24px;
+  height: 560px;
+  margin-right: 10px;
+
+}
+
+h4, nz-statistic {
+  text-align: center;
 }
