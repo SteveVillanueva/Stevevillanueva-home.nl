@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData, DatePipe } from '@angular/common';
 import { HomeRoutingModule } from './pages/home-routing.module';
 import { BaseInterceptor } from './Interceptor/base.interceptor';
+import { ErrorInterceptor } from './Interceptor/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,11 @@ import { BaseInterceptor } from './Interceptor/base.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: BaseInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true
     },
     { provide: NZ_I18N, useValue: en_US },

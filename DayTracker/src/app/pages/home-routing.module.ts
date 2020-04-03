@@ -11,8 +11,8 @@ const routes: Routes = [
   { path: 'rate', component: RateComponent },
   { path: 'statistic', component: StatisticComponent },
   { path: 'detail/:date', component: DetailComponent },
-  { path: '404', component: ResultComponent },
-  { path: '**', redirectTo: '/404' }
+  { path: 'result/:code', component: ResultComponent },
+  { path: '**', redirectTo: 'result/404' }
 ];
 
 @NgModule({

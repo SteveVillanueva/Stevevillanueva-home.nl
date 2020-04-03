@@ -28,7 +28,7 @@ export class RateComponent implements OnInit {
     this.rate.postRatings(this.RatingPost).subscribe(
       data => { console.log(data); },
       err => { console.log(err); },
-      () => { this.InputCheck('error'); }
+      () => { this.route.navigateByUrl('result/201'); }
     );
   }
 
@@ -37,7 +37,7 @@ export class RateComponent implements OnInit {
       this.postMsg = 'please fill in all fields';
       this.message.create(type, `Please fill in all fields`);
     } else {
-      this.route.navigateByUrl('result/400');
+
     }
   }
   createMessage(type: string): void {
