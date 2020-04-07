@@ -18,29 +18,24 @@ export class RateComponent implements OnInit {
     comment: ''
   };
   postMsg: string;
-  constructor(public rate: RatingService, private route: Router, private message: NzMessageService) { }
+  RateForm = this.fb.group({
+    date: ['', Validators.required],
+    rating: ['', Validators.required],
+    mood: ['', Validators.required],
+    comment: [''],
+  });
+  constructor(public rate: RatingService, private route: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
 
   PostRating(): void {
+    console.log(this.RateForm)
     console.log(this.RatingPost.date);
     this.rate.postRatings(this.RatingPost).subscribe(
       data => { console.log(data); },
       err => { console.log(err); },
       () => { this.route.navigateByUrl('result/201'); }
     );
-  }
-
-  InputCheck(type: string): void {
-    if (!this.RatingPost.rating || !this.RatingPost.date || !this.RatingPost.mood) {
-      this.postMsg = 'please fill in all fields';
-      this.message.create(type, `Please fill in all fields`);
-    } else {
-
-    }
-  }
-  createMessage(type: string): void {
-
   }
 }

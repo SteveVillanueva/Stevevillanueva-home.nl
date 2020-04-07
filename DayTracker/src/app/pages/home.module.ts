@@ -19,7 +19,7 @@ import { ResultComponent } from './result/result.component';
     FormsModule,
     NgZorroAntdModule,
     HomeRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [
     RateComponent

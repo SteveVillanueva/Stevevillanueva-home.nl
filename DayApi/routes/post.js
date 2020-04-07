@@ -4,13 +4,7 @@ const app = new Koa();
 const router = new Router()
 const Rating = require('./schema')
 // middleware that is specific to this router
-app.use(async (ctx, next) => {
-    try {
-        await next()
-    } catch (e) {
-        handleErrorHere(e)
-    }
-})
+
 module.exports = ({ router }) => {
     router.post('/rate', async (ctx, next) => {
         const date = new Date(ctx.request.body.date);
@@ -22,14 +16,31 @@ module.exports = ({ router }) => {
         ctx.body = JSON.stringify(ctx.request.body);
         await steve.save(function (err, steve) {
             if (err) {
-                ctx.throw(400,'Error Message');
-                
+                const err = new Error('Access denied to the resource');
+                err.status = 401;
+                err.expose = true;
+                throw err;
             }
             else {
                 console.log('test2')
                 ctx.body = JSON.stringify(ctx.request.body);
             }
         });
-        
     })
+    const jsonErrorHandler = async (ctx, next) => {
+        try {
+          await next();
+        } catch (err) {
+          const isJson = ctx.get('Accept') === 'application/json';
+          if (isJson) {
+            ctx.body = {
+              error: 'An error just occurred'
+            }
+          } else {
+            throw err;
+          } 
+        }
+      }
+      
+      app.use(jsonErrorHandler);
 }

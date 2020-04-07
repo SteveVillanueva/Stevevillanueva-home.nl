@@ -2,41 +2,43 @@
   <h1>Rate</h1>
   <div class="underLine"></div>
   <div class="postRateCard">
-    <nz-card>
-      <div class="date">
-        <h4>* Date</h4>
-        <nz-date-picker [(ngModel)]="RatingPost.date"></nz-date-picker>
-      </div>
-      <div>
-        <h4>* Rating</h4>
-        <nz-input-number [(ngModel)]="RatingPost.rating" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
-      </div>
-      <div class="rate">
-        <div>
-          <h4>* mood</h4>
-          <nz-select [(ngModel)]="RatingPost.mood" nzAllowClear nzPlaceHolder="Choose" class="mood">
-            <nz-option nzValue="Angry" nzLabel="Angry"></nz-option>
-            <nz-option nzValue="Anxious" nzLabel="Anxious"></nz-option>
-            <nz-option nzValue="Hyper" nzLabel="Hyper"></nz-option>
-            <nz-option nzValue="Calm" nzLabel="Calm"></nz-option>
-            <nz-option nzValue="Sad" nzLabel="Sad"></nz-option>
-            <nz-option nzValue="Motivated" nzLabel="Motivated"></nz-option>
-            <nz-option nzValue="Happy" nzLabel="Happy"></nz-option>
-            <nz-option nzValue="Tired" nzLabel="Tired"></nz-option>
-            <nz-option nzValue="Stressed" nzLabel="Stressed"></nz-option>
-            <nz-option nzValue="Neutral" nzLabel="Neutral"></nz-option>
-          </nz-select>
-        </div>
-      </div>
-      <div class="comment">
-        <h4>comment</h4>
-        <textarea nz-input placeholder="Autosize height with minimum and maximum number of lines"
-          [(ngModel)]="RatingPost.comment" [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
-      </div>
-      <button nz-button (click)="createMessage('error')" (click)="PostRating()" class="postBtn">Post</button>
 
-
-    </nz-card>
-
+    <div>
+      <form [formGroup]="RateForm" (ngSubmit)="PostRating()">
+        <nz-card>
+          <div class="date">
+            <h4>* Date</h4>
+            <nz-date-picker formControlName="date"></nz-date-picker>
+          </div>
+          <div>
+            <h4>* Rating</h4>
+            <nz-input-number formControlName="rating" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+          </div>
+          <div class="rate">
+            <div>
+              <h4>* mood</h4>
+              <nz-select formControlName="mood" nzAllowClear nzPlaceHolder="Choose" class="mood">
+                <nz-option nzValue="Angry" nzLabel="Angry"></nz-option>
+                <nz-option nzValue="Anxious" nzLabel="Anxious"></nz-option>
+                <nz-option nzValue="Hyper" nzLabel="Hyper"></nz-option>
+                <nz-option nzValue="Calm" nzLabel="Calm"></nz-option>
+                <nz-option nzValue="Sad" nzLabel="Sad"></nz-option>
+                <nz-option nzValue="Motivated" nzLabel="Motivated"></nz-option>
+                <nz-option nzValue="Happy" nzLabel="Happy"></nz-option>
+                <nz-option nzValue="Tired" nzLabel="Tired"></nz-option>
+                <nz-option nzValue="Stressed" nzLabel="Stressed"></nz-option>
+                <nz-option nzValue="Neutral" nzLabel="Neutral"></nz-option>
+              </nz-select>
+            </div>
+          </div>
+          <div class="comment">
+            <h4>comment</h4>
+            <textarea nz-input placeholder="Autosize height with minimum and maximum number of lines"
+              formControlName="comment" [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
+          </div>
+          <button nz-button type="submit" class="postBtn">Post</button>
+        </nz-card>
+      </form>
+    </div>
   </div>
 </div>

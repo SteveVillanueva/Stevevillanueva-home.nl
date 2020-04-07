@@ -13,16 +13,7 @@ require('./routes/get')({ router });
 require('./routes/post')({ router });
 require('./routes/put')({ router });
 require('./routes/delete')({ router });
-app.use(router.routes());
-app.use(router.allowedMethods());
 
-app.use(async (ctx, next) => {
-    try {
-        await next()
-    } catch (e) {
-        handleErrorHere(e)
-    }
-})
 app.use(router.routes());
 app.use(router.allowedMethods());
 
