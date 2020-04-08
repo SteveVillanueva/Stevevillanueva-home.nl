@@ -1,6 +1,6 @@
+import '@angular/compiler';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import '@angular/compiler';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IconsProviderModule } from './icons-provider.module';
@@ -11,6 +11,8 @@ import { registerLocaleData, DatePipe } from '@angular/common';
 import { HomeRoutingModule } from './pages/home-routing.module';
 import { BaseInterceptor } from './Interceptor/base.interceptor';
 import { ErrorInterceptor } from './Interceptor/error.interceptor';
+import { ReactiveFormsModule } from '@angular/forms';
+import { StatisticModule } from '../app/pages/statistic/statistic.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { ErrorInterceptor } from './Interceptor/error.interceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     HomeRoutingModule,
+    ReactiveFormsModule,
+    StatisticModule
   ],
   providers: [
     {

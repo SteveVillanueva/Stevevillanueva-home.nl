@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RatingService } from '../rating.service';
 import { Router } from '@angular/router';
 import { PostRating } from '../../Interfaces/RatingPost';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-rate',
@@ -19,10 +18,10 @@ export class RateComponent implements OnInit {
   };
   postMsg: string;
   RateForm = this.fb.group({
-    date: ['', Validators.required],
-    rating: ['', Validators.required],
-    mood: ['', Validators.required],
-    comment: [''],
+    date: [null, Validators.required],
+    rating: [null, Validators.required],
+    mood: [null, Validators.required],
+    comment: [null],
   });
   constructor(public rate: RatingService, private route: Router, private fb: FormBuilder) { }
 
@@ -30,12 +29,16 @@ export class RateComponent implements OnInit {
   }
 
   PostRating(): void {
-    console.log(this.RateForm)
+    for (const i in this.RateForm.controls) {
+      this.RateForm.controls[i].markAsDirty();
+      this.RateForm.controls[i].updateValueAndValidity();
+    }
+    this.RatingPost = this.RateForm.value;
     console.log(this.RatingPost.date);
     this.rate.postRatings(this.RatingPost).subscribe(
       data => { console.log(data); },
       err => { console.log(err); },
-      () => { this.route.navigateByUrl('result/201'); }
+      () => { }
     );
   }
 }
