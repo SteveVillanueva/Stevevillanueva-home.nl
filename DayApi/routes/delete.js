@@ -13,6 +13,7 @@ module.exports = ({ router }) => {
     router.delete('/delete/:date', async (ctx, next) => {
         let date = ctx.request.path
         date = date.split('/')[2];
+        console.log(date + ' has been updated')
         Rating.deleteOne({ date: date }, function (err) {
             if (err) return handleError(err);
         });
@@ -28,15 +29,3 @@ module.exports = ({ router }) => {
         console.log('deleted')
     })
 }
-
-// put request for api
-router.put(`/update/:date`, async (ctx, next) => {
-    let date = ctx.request.path
-    date = date.split('/')[2];
-    let doc = await Rating.findOne({ date: date });
-    await Rating.updateOne({ date: date }, { comment: ctx.request.body.comment })
-    await doc.save();
-    ctx.body = JSON.stringify(ctx.request.body);
-})
-
-

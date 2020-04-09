@@ -1,48 +1,67 @@
-<div>
+<nz-card>
   <h1>Detail</h1>
   <div class="underLine"></div>
-  <nz-card>
-    <div class="buttonDiv">
-      <div (click)="UpdateRating()" class="save">
-        <button><i nz-icon nzType="save" nzTheme="outline" style="font-size: 25px"></i>Save</button>
-      </div>
-      <div class="line"></div>
-      <div (click)="DeleteRating()">
-        <button><i nz-icon nzType="delete" nzTheme="outline" style="font-size: 25px"></i>Delete</button>
-      </div>
-    </div>
-    <div class="dataDisplay">
-      <h4>Date</h4>
-      <p>{{RatingGet.date}}</p>
-      <h4>Rating</h4>
-      <p>{{RatingGet.rating}}</p>
-      <h4>Mood</h4>
-      <p>{{RatingGet.mood}}</p>
-      <h4>Comment</h4>
-      <p>{{RatingGet.comment}}</p>
-    </div>
-    <div class="dataEdit">
-      <div>
-        <h4>mood</h4>
-        <nz-select [(ngModel)]="RatingUpdate.mood" nzAllowClear nzPlaceHolder="Choose" class="selector">
-          <nz-option nzValue="Angry" nzLabel="Angry"></nz-option>
-          <nz-option nzValue="Anxious" nzLabel="Anxious"></nz-option>
-          <nz-option nzValue="Hyper" nzLabel="Hyper"></nz-option>
-          <nz-option nzValue="Calm" nzLabel="Calm"></nz-option>
-          <nz-option nzValue="Sad" nzLabel="Sad"></nz-option>
-          <nz-option nzValue="Motivated" nzLabel="Motivated"></nz-option>
-          <nz-option nzValue="Happy" nzLabel="Happy"></nz-option>
-          <nz-option nzValue="Tired" nzLabel="Tired"></nz-option>
-          <nz-option nzValue="Stressed" nzLabel="Stressed"></nz-option>
-          <nz-option nzValue="Neutral" nzLabel="Neutral"></nz-option>
-        </nz-select>
-        <h4>rating</h4>
-        <nz-input-number [(ngModel)]="RatingUpdate.rating" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
-      </div>
-      <h4>comment</h4>
-      <textarea nz-input placeholder="Autosize height with minimum and maximum number of lines"
-        [(ngModel)]="RatingUpdate.comment" [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
 
+
+  <div class="buttonDiv">
+    <div>
+      <button nz-button type="submit" class="postBtn" [disabled]="!UpdateForm.valid" (click)="UpdateRating()">
+        <i nz-icon nzType="save" style="font-size: 25px"></i>Post
+      </button>
     </div>
-  </nz-card>
-</div>
+    <div class="line"></div>
+    <div>
+      <button nz-button (click)="DeleteRating()">
+        <i nz-icon nzType="delete" style="font-size: 25px"></i>Delete
+      </button>
+    </div>
+    <div class="line"></div>
+    <div>
+      <button nz-button (click)="Cancel()">
+        <i nz-icon nzType="stop" nzTheme="outline" style="font-size: 25px"></i>Cancel
+      </button>
+    </div>
+  </div>
+  <form nz-form [formGroup]=UpdateForm (ngSubmit)="UpdateRating()">
+    <h2>{{this.urlDate}}</h2>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please select a rating">
+        <nz-input-group>
+          <nz-form-label>* Rating</nz-form-label>
+          <nz-input-number formControlName="rating" [nzMin]="1" [nzMax]="10" [nzStep]="1"
+            [(ngModel)]="RatingGet.rating"></nz-input-number>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please select a mood">
+        <nz-input-group>
+          <nz-form-label>* mood</nz-form-label>
+          <nz-select formControlName="mood" nzPlaceHolder="Choose" class="mood" [(ngModel)]="RatingGet.mood">
+            <nz-option nzValue="Angry" nzLabel="Angry"></nz-option>
+            <nz-option nzValue="Anxious" nzLabel="Anxious"></nz-option>
+            <nz-option nzValue="Hyper" nzLabel="Hyper"></nz-option>
+            <nz-option nzValue="Calm" nzLabel="Calm"></nz-option>
+            <nz-option nzValue="Sad" nzLabel="Sad"></nz-option>
+            <nz-option nzValue="Motivated" nzLabel="Motivated"></nz-option>
+            <nz-option nzValue="Happy" nzLabel="Happy"></nz-option>
+            <nz-option nzValue="Tired" nzLabel="Tired"></nz-option>
+            <nz-option nzValue="Stressed" nzLabel="Stressed"></nz-option>
+            <nz-option nzValue="Neutral" nzLabel="Neutral"></nz-option>
+          </nz-select>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group>
+          <nz-form-label>comment</nz-form-label>
+          <textarea nz-input placeholder="Comment..." formControlName="comment" [(ngModel)]="RatingGet.comment"
+            class="test" [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+
+
+  </form>

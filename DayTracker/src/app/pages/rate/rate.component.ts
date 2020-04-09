@@ -29,6 +29,7 @@ export class RateComponent implements OnInit {
   }
 
   PostRating(): void {
+    // tslint:disable-next-line: forin
     for (const i in this.RateForm.controls) {
       this.RateForm.controls[i].markAsDirty();
       this.RateForm.controls[i].updateValueAndValidity();
