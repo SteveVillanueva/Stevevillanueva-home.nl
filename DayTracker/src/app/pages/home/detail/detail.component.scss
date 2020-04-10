@@ -8,6 +8,7 @@ h1 {
 .buttonDiv {
   display: flex;
   flex-direction: row;
+  padding: 20px;
 
   div {
     display: flex;
@@ -45,5 +46,6 @@ i {
 }
 
 form {
-  border: 1px rgba(100, 100, 100, 0.5) solid;
+  padding: 20px;
+  border: 1px solid rgba(184, 182, 182, 0.486);
 }

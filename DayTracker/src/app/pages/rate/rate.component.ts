@@ -39,7 +39,7 @@ export class RateComponent implements OnInit {
     this.rate.postRatings(this.RatingPost).subscribe(
       data => { console.log(data); },
       err => { console.log(err); },
-      () => { }
+      () => { this.route.navigateByUrl('result/201'); }
     );
   }
 }

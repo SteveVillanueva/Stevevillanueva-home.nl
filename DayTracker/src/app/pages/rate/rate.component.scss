@@ -4,6 +4,9 @@
   align-items: center;
 }
 
+form {
+  border: 1px solid rgba(184, 182, 182, 0.486);
+}
 
 .postRateCard {
   display: flex;
@@ -13,6 +16,7 @@
   border: 1px rgba(0, 0, 0, 0.25) solid;
   align-self: center;
   justify-self: center;
+  padding: 20px;
 }
 
 .postBtn:active + .postRate {

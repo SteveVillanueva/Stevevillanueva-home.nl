@@ -1,55 +1,53 @@
 <div class="postRate">
   <h1>Rate</h1>
   <div class="underLine"></div>
-  <div class="postRateCard">
-    <form nz-form [formGroup]=RateForm (ngSubmit)="PostRating()">
-      <nz-card>
-        <nz-form-item>
-          <nz-form-control nzErrorTip="Please choose a date">
-            <nz-input-group>
-              <nz-form-label [nzSm]="6" [nzXs]="24">* Date</nz-form-label>
-              <nz-date-picker formControlName="date"></nz-date-picker>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-control nzErrorTip="Please select a rating">
-            <nz-input-group>
-              <nz-form-label [nzSm]="6" [nzXs]="24">* Rating</nz-form-label>
-              <nz-input-number formControlName="rating" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-control nzErrorTip="Please select a mood">
-            <nz-input-group>
-              <nz-form-label [nzSm]="6" [nzXs]="24">* mood</nz-form-label>
-              <nz-select formControlName="mood" nzPlaceHolder="Choose" class="mood">
-                <nz-option nzValue="Angry" nzLabel="Angry"></nz-option>
-                <nz-option nzValue="Anxious" nzLabel="Anxious"></nz-option>
-                <nz-option nzValue="Hyper" nzLabel="Hyper"></nz-option>
-                <nz-option nzValue="Calm" nzLabel="Calm"></nz-option>
-                <nz-option nzValue="Sad" nzLabel="Sad"></nz-option>
-                <nz-option nzValue="Motivated" nzLabel="Motivated"></nz-option>
-                <nz-option nzValue="Happy" nzLabel="Happy"></nz-option>
-                <nz-option nzValue="Tired" nzLabel="Tired"></nz-option>
-                <nz-option nzValue="Stressed" nzLabel="Stressed"></nz-option>
-                <nz-option nzValue="Neutral" nzLabel="Neutral"></nz-option>
-              </nz-select>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-control>
-            <nz-input-group>
-              <nz-form-label [nzSm]="6" [nzXs]="24">comment</nz-form-label>
-              <textarea nz-input placeholder="Comment..." formControlName="comment"
-                [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
-        <button nz-button type="submit" class="postBtn" [disabled]="!RateForm.valid">Post</button>
-      </nz-card>
-    </form>
-  </div>
+  <form nz-form [formGroup]=RateForm (ngSubmit)="PostRating()">
+    <nz-card>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please choose a date">
+          <nz-input-group>
+            <nz-form-label [nzSm]="6" [nzXs]="24">* Date</nz-form-label>
+            <nz-date-picker formControlName="date"></nz-date-picker>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please select a rating">
+          <nz-input-group>
+            <nz-form-label [nzSm]="6" [nzXs]="24">* Rating</nz-form-label>
+            <nz-input-number formControlName="rating" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please select a mood">
+          <nz-input-group>
+            <nz-form-label [nzSm]="6" [nzXs]="24">* mood</nz-form-label>
+            <nz-select formControlName="mood" nzPlaceHolder="Choose" class="mood">
+              <nz-option nzValue="Angry" nzLabel="Angry"></nz-option>
+              <nz-option nzValue="Anxious" nzLabel="Anxious"></nz-option>
+              <nz-option nzValue="Hyper" nzLabel="Hyper"></nz-option>
+              <nz-option nzValue="Calm" nzLabel="Calm"></nz-option>
+              <nz-option nzValue="Sad" nzLabel="Sad"></nz-option>
+              <nz-option nzValue="Motivated" nzLabel="Motivated"></nz-option>
+              <nz-option nzValue="Happy" nzLabel="Happy"></nz-option>
+              <nz-option nzValue="Tired" nzLabel="Tired"></nz-option>
+              <nz-option nzValue="Stressed" nzLabel="Stressed"></nz-option>
+              <nz-option nzValue="Neutral" nzLabel="Neutral"></nz-option>
+            </nz-select>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <nz-input-group>
+            <nz-form-label [nzSm]="6" [nzXs]="24">comment</nz-form-label>
+            <textarea nz-input placeholder="Comment..." formControlName="comment"
+              [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <button nz-button type="submit" class="postBtn" [disabled]="!RateForm.valid">Post</button>
+    </nz-card>
+  </form>
 </div>

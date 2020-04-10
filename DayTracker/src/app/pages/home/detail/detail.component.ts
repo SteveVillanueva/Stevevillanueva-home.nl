@@ -50,7 +50,7 @@ export class DetailComponent implements OnInit {
     this.rate.deleteRating(this.urlDate).subscribe(
       data => { },
       err => { },
-      () => { this.route.navigateByUrl('home'); }
+      () => { this.route.navigateByUrl('result/201'); }
     );
   }
 
@@ -65,7 +65,7 @@ export class DetailComponent implements OnInit {
     this.rate.updateRating(this.urlDate, this.RatingUpdate).subscribe(
       data => { },
       err => { },
-      () => { this.route.navigateByUrl('home'); }
+      () => { this.route.navigateByUrl('result/201'); }
     );
   }
 
