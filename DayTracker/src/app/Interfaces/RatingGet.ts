@@ -4,3 +4,8 @@ export interface Ratings {
   mood: string;
   comment: string;
 }
+
+export interface RatingStatistic {
+    rating: number;
+    date: Date;
+}

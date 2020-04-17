@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { Ratings } from '../Interfaces/RatingGet';
 import { PostRating } from '../Interfaces/RatingPost';
 import { RatingUpdate } from '../Interfaces/RatingUpdate';
-import { RatingGetMonth } from '../Interfaces/RatingGetMonth';
+import { RatingStatistic } from '../Interfaces/RatingGet';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +40,9 @@ export class RatingService {
 
   getYear(Year: string): Observable<Ratings[]> {
     return this.http.get<Ratings[]>(`ratingYear/${Year}`);
+  }
+
+  getMonthRating(Month: string): Observable<RatingStatistic[]> {
+    return this.http.get<RatingStatistic[]>(`ratingMonthGraph/${Month}`);
   }
 }
