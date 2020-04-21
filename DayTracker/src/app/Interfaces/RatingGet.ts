@@ -6,6 +6,7 @@ export interface Ratings {
 }
 
 export interface RatingStatistic {
-    rating: number;
-    date: Date;
+  rating: number;
+  date: Date;
 }
+

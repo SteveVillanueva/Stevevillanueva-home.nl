@@ -10,3 +10,4 @@ export interface Moods {
   Stressed: number;
   Neutral: number;
 }
+

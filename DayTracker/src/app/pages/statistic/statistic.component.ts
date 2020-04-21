@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { en_US, zh_CN, NzI18nService } from 'ng-zorro-antd';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxChartsModule, SeriesHorizontal } from '@swimlane/ngx-charts';
 
 import { RatingService } from '../rating.service';
 import { Ratings } from 'src/app/Interfaces/RatingGet';
@@ -19,11 +19,10 @@ export class StatisticComponent implements OnInit {
   year: string;
   RatingGet: Array<Ratings>;
   RatingGetStat: Array<RatingStatistic>;
-  graphdata: Array<any>;
+  graphdata;
   ratingLength: number;
   ratingTotal: number;
   percent: number;
-  averageNeeded: number;
   averageRating: number;
   moods: Moods = {
     Angry: 0,
@@ -38,7 +37,6 @@ export class StatisticComponent implements OnInit {
     Neutral: 0,
   };
 
-  multi: any[];
   view: any[] = [700, 300];
 
   // options
@@ -59,28 +57,31 @@ export class StatisticComponent implements OnInit {
 
   public data = [
     {
-      "name": "test",
-      "series": [
-        {
-          "name": "2016-09-18T16:02:33.353Z",
-          "value": 3515,
-        },
-        {
-          "name": "2016-09-17T13:59:10.324Z",
-          "value": 5663,
+      name: 'test',
+      series:
+        [
 
-        },
-        {
-          "name": "2016-09-14T23:04:17.864Z",
-          "value": 3867,
+        ]
+    }
+  ];
 
-        },
-      ]
+
+  public data3 = [
+    {
+      name: 'test',
+      series:
+        [
+
+        ]
     }
   ];
   constructor(private datePipe: DatePipe, public rate: RatingService) { }
 
   ngOnInit(): void {
+
+  }
+  test2() {
+
   }
   onSelect(data): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(this.RatingGet)));
@@ -97,7 +98,7 @@ export class StatisticComponent implements OnInit {
   onChangeMonth(result: Date): void {
     this.month = this.datePipe.transform(result, 'yyyy-MM-dd h:mm:ss');
     this.rate.getMonth(this.month).subscribe(
-      data => { this.RatingGet = data, this.ratingLength = data.length },
+      data => { this.RatingGet = data, this.ratingLength = data.length; },
       err => { },
       () => {
         this.ratingTotal = this.totalRating();
@@ -118,7 +119,16 @@ export class StatisticComponent implements OnInit {
             value: x.rating
           };
         });
+        this.graphdata.length - 1;
         console.log(this.graphdata);
+
+        if (this.graphdata !== '' && this.graphdata !== undefined && this.graphdata != null) {
+          for (let i = 0; i <= this.graphdata.length - 1; i++) {
+            this.data3[0].series.push(this.graphdata[i]);
+          }
+        }
+        this.data = this.data3;
+        return this.graphdata;
       }
     );
   }
@@ -200,7 +210,8 @@ export class StatisticComponent implements OnInit {
       }
     }
 
-    this.moods = this.moods
+    this.moods = this.moods;
+    console.log(this.moods)
     return this.moods;
   }
 }

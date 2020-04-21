@@ -23,7 +23,7 @@ module.exports = ({ router }) => {
     // deletes all ratings
     // ! remove when done
     router.delete('/deleteAll', async (ctx, next) => {
-        Rating.deleteMany({ __v: 0 }, function (err) {
+        Rating.deleteMany({ month: "4" }, function (err) {
             if (err) return handleError(err);
         });
         console.log('deleted')
