@@ -9,4 +9,3 @@ export interface RatingStatistic {
   rating: number;
   date: Date;
 }
-

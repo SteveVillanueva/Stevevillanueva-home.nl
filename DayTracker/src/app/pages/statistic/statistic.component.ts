@@ -55,34 +55,29 @@ export class StatisticComponent implements OnInit {
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
   };
 
-  public data = [
-    {
-      name: 'test',
-      series:
-        [
+  GraphValue = [{
+    name: '2020-04-20T00:00:00.000Z',
+    value: 4,
+  }];
 
-        ]
+  data = [
+    {
+      name: 'Rating',
+      series: []
     }
   ];
 
-
-  public data3 = [
+  public data2 = [
     {
-      name: 'test',
-      series:
-        [
-
-        ]
+      name: 'Rating',
+      series: []
     }
   ];
   constructor(private datePipe: DatePipe, public rate: RatingService) { }
 
   ngOnInit(): void {
-
   }
-  test2() {
 
-  }
   onSelect(data): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(this.RatingGet)));
   }
@@ -105,11 +100,10 @@ export class StatisticComponent implements OnInit {
         this.moods = this.totalMoods();
         this.averageRating = this.ratingTotal / this.ratingLength;
         this.percent = Math.round(this.ratingLength / 31 * 100);
-        console.log(this.RatingGet);
       }
     );
     this.rate.getMonthRating(this.month).subscribe(
-      data => { this.RatingGetStat = data, console.log(data) },
+      data => { this.RatingGetStat = data, console.log(data); },
       err => { },
       () => {
 
@@ -119,16 +113,21 @@ export class StatisticComponent implements OnInit {
             value: x.rating
           };
         });
+        // tslint:disable-next-line: no-unused-expression
         this.graphdata.length - 1;
-        console.log(this.graphdata);
-
         if (this.graphdata !== '' && this.graphdata !== undefined && this.graphdata != null) {
           for (let i = 0; i <= this.graphdata.length - 1; i++) {
-            this.data3[0].series.push(this.graphdata[i]);
+            this.data2[0].series.push(this.graphdata[i]);
           }
         }
-        this.data = this.data3;
-        return this.graphdata;
+        this.data = this.data2;
+        this.data2 = [
+          {
+            name: 'rating',
+            series: []
+          }
+        ];
+
       }
     );
   }
