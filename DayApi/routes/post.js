@@ -14,7 +14,6 @@ module.exports = ({ router }) => {
     date.setUTCHours(0, 0, 0, 0);
     const steve = new DayRating({ date: date, rating: rating, mood: mood, comment: comment });
     ctx.body = JSON.stringify(ctx.request.body);
-    console.log(steve)
     await steve.save(function (err, steve) {
       console.log(err)
       console.log('test2')
