@@ -1,8 +1,6 @@
 <div>
   <h1>Statistic</h1>
   <div class="underLine"></div>
-
-
   <div class="statistic">
     <div class="ratePercent">
       <div>
@@ -22,10 +20,8 @@
         <nz-year-picker [(ngModel)]="year" (ngModelChange)="onChangeYear($event)" nzPlaceHolder="Select year">
         </nz-year-picker>
       </div>
-
     </div>
     <div class="moodPercent">
-
       <p>Angry</p>
       <nz-progress [nzPercent]="calculatePercent(this.moods.Angry)" nzSize="small"
         [nzStrokeColor]="{ '0%': '#F8B6B2', '100%': '#F8B6B2' }"></nz-progress>
@@ -56,7 +52,6 @@
       <p>Neutral</p>
       <nz-progress [nzPercent]="calculatePercent(this.moods.Neutral)" nzSize="small"
         [nzStrokeColor]="{ '0%': '#FFFF00', '100%': '#FFFF00' }"></nz-progress>
-
     </div>
     <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="data" [legend]="legend"
       [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis"
@@ -64,5 +59,4 @@
       (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
     </ngx-charts-line-chart>
   </div>
-
 </div>

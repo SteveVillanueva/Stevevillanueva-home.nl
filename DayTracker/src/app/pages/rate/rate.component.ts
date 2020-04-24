@@ -37,8 +37,8 @@ export class RateComponent implements OnInit {
     this.RatingPost = this.RateForm.value;
     console.log(this.RatingPost.date);
     this.rate.postRatings(this.RatingPost).subscribe(
-      data => { console.log(data); },
-      err => { console.log(err); },
+      data => { },
+      err => { },
       () => { this.route.navigateByUrl('result/201'); }
     );
   }

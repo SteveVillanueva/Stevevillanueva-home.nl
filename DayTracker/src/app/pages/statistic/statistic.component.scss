@@ -4,7 +4,6 @@ h1 {
 
 .statistic {
   display: flex;
-  align-items: center;
   justify-content: center;
   flex-direction: row;
   height: 100%;
@@ -20,7 +19,6 @@ h1 {
 .ratePercent {
   display: flex;
   flex-direction: column;
-  align-items: center;
   border: 1px solid rgba(184, 182, 182, 0.486);
   flex-direction: column;
   justify-content: space-between;

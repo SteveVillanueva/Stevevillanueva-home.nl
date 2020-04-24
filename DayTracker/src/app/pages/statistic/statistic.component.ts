@@ -54,12 +54,6 @@ export class StatisticComponent implements OnInit {
   colorScheme = {
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
   };
-
-  GraphValue = [{
-    name: '2020-04-20T00:00:00.000Z',
-    value: 4,
-  }];
-
   data = [
     {
       name: 'Rating',
@@ -67,7 +61,7 @@ export class StatisticComponent implements OnInit {
     }
   ];
 
-  public data2 = [
+  data2 = [
     {
       name: 'Rating',
       series: []
@@ -103,7 +97,7 @@ export class StatisticComponent implements OnInit {
       }
     );
     this.rate.getMonthRating(this.month).subscribe(
-      data => { this.RatingGetStat = data, console.log(data); },
+      data => { this.RatingGetStat = data; },
       err => { },
       () => {
 
@@ -127,7 +121,6 @@ export class StatisticComponent implements OnInit {
             series: []
           }
         ];
-
       }
     );
   }
