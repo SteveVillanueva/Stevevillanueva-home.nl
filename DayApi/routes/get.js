@@ -49,6 +49,7 @@ module.exports = ({ router }) => {
   });
 }
 
+// gets the date part from a url
 function splitUrl(date) {
   date = date.split('/')[2];
   date = date.replace(/\%/g, " ");

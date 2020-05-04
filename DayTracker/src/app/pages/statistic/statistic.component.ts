@@ -37,105 +37,46 @@ export class StatisticComponent implements OnInit {
     Neutral: 0,
   };
 
+  // data used in pie chart
   PieChart = [
-    {
-      name: 'Angry',
-      value: 0
-    },
-    {
-      name: 'Anxious',
-      value: 0
-    },
-    {
-      name: 'Hyper',
-      value: 0
-    },
-    {
-      name: 'Calm',
-      value: 0
-    },
-    {
-      name: 'Sad',
-      value: 0
-    },
-    {
-      name: 'Motivated',
-      value: 0
-    },
-    {
-      name: 'Happy',
-      value: 0
-    },
-    {
-      name: 'Tired',
-      value: 0
-    },
-    {
-      name: 'Stressed',
-      value: 0
-    },
-    {
-      name: 'Neutral',
-      value: 0
-    }
+    { name: 'Angry', value: 0 },
+    { name: 'Anxious', value: 0 },
+    { name: 'Hyper', value: 0 },
+    { name: 'Calm', value: 0 },
+    { name: 'Sad', value: 0 },
+    { name: 'Motivated', value: 0 },
+    { name: 'Happy', value: 0 },
+    { name: 'Tired', value: 0 },
+    { name: 'Stressed', value: 0 },
+    { name: 'Neutral', value: 0 }
   ];
 
-  PieChart2 = [
-    {
-      name: 'Angry',
-      value: this.moods.Angry
-    },
-    {
-      name: 'Anxious',
-      value: this.moods.Anxious
-    },
-    {
-      name: 'Hyper',
-      value: this.moods.Hyper
-    },
-    {
-      name: 'Calm',
-      value: this.moods.Calm
-    },
-    {
-      name: 'Sad',
-      value: this.moods.Sad
-    },
-    {
-      name: 'Motivated',
-      value: this.moods.Motivated
-    },
-    {
-      name: 'Happy',
-      value: this.moods.Happy
-    },
-    {
-      name: 'Tired',
-      value: this.moods.Tired
-    },
-    {
-      name: 'Stressed',
-      value: this.moods.Stressed
-    },
-    {
-      name: 'Neutral',
-      value: +this.moods.Neutral
-    }
+  // used to insert data into PieChart
+
+
+  // data used in LineChart
+  LineChart = [
+    { name: 'Rating', series: [] }
+  ];
+
+  // used to insert data into LineChart
+  LineChart2 = [
+    { name: 'Rating', series: [] }
   ];
 
   view: any[] = [700, 300];
 
   // options line chart
-  legend: boolean = true;
-  showLabels: boolean = true;
-  animations: boolean = true;
-  xAxis: boolean = true;
-  yAxis: boolean = true;
-  showYAxisLabel: boolean = true;
-  showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'date';
-  yAxisLabel: string = 'rating';
-  timeline: boolean = true;
+  legend = true;
+  showLabels = true;
+  animations = true;
+  xAxis = true;
+  yAxis = true;
+  showYAxisLabel = true;
+  showXAxisLabel = true;
+  xAxisLabel = 'date';
+  yAxisLabel = 'rating';
+  timeline = true;
 
   // options pie chart
   showLegend = true;
@@ -152,19 +93,7 @@ export class StatisticComponent implements OnInit {
     domain: ['#F8B6B2', '#FCD9AF', '#FCF6B8', '#BCFBB3', '#AAE0F9', '#CAB7F3', '#FFC2E6', '#CECCCD', '#6F6D6E', '#FFFF00']
   };
 
-  LineChart = [
-    {
-      name: 'Rating',
-      series: []
-    }
-  ];
 
-  LineChart2 = [
-    {
-      name: 'Rating',
-      series: []
-    }
-  ];
 
 
   constructor(private datePipe: DatePipe, public rate: RatingService) { }
@@ -289,53 +218,21 @@ export class StatisticComponent implements OnInit {
         this.moods.Neutral++;
       }
     }
-    this.PieChart2 = [
-      {
-        name: 'Angry',
-        value: this.moods.Angry
-      },
-      {
-        name: 'Anxious',
-        value: this.moods.Anxious
-      },
-      {
-        name: 'Hyper',
-        value: this.moods.Hyper
-      },
-      {
-        name: 'Calm',
-        value: this.moods.Calm
-      },
-      {
-        name: 'Sad',
-        value: this.moods.Sad
-      },
-      {
-        name: 'Motivated',
-        value: this.moods.Motivated
-      },
-      {
-        name: 'Happy',
-        value: this.moods.Happy
-      },
-      {
-        name: 'Tired',
-        value: this.moods.Tired
-      },
-      {
-        name: 'Stressed',
-        value: this.moods.Stressed
-      },
-      {
-        name: 'Neutral',
-        value: +this.moods.Neutral
-      }
+    const PieChart2 = [
+      { name: 'Angry', value: this.moods.Angry },
+      { name: 'Anxious', value: this.moods.Anxious },
+      { name: 'Hyper', value: this.moods.Hyper },
+      { name: 'Calm', value: this.moods.Calm },
+      { name: 'Sad', value: this.moods.Sad },
+      { name: 'Motivated', value: this.moods.Motivated },
+      { name: 'Happy', value: this.moods.Happy },
+      { name: 'Tired', value: this.moods.Tired },
+      { name: 'Stressed', value: this.moods.Stressed },
+      { name: 'Neutral', value: this.moods.Neutral }
     ];
-    this.PieChart = this.PieChart2;
+    this.PieChart = PieChart2;
     this.moods = this.moods;
     return this.moods;
   }
 }
-
-
 
