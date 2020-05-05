@@ -159,10 +159,9 @@ export class StatisticComponent implements OnInit {
       }
     );
   }
-
   totalRating() {
     let total = 0;
-    for (let data of this.RatingGet) {
+    for (const data of this.RatingGet) {
       total += data.rating;
     }
     return total;
@@ -186,36 +185,38 @@ export class StatisticComponent implements OnInit {
       Stressed: 0,
       Neutral: 0,
     };
-    for (let data of this.RatingGet) {
-      if (data.mood === 'Angry') {
-        this.moods.Angry++;
-      }
-      if (data.mood === 'Anxious') {
-        this.moods.Anxious++;
-      }
-      if (data.mood === 'Hyper') {
-        this.moods.Hyper++;
-      }
-      if (data.mood === 'Calm') {
-        this.moods.Calm++;
-      }
-      if (data.mood === 'Sad') {
-        this.moods.Sad++;
-      }
-      if (data.mood === 'Motivated') {
-        this.moods.Motivated++;
-      }
-      if (data.mood === 'Happy') {
-        this.moods.Happy++;
-      }
-      if (data.mood === 'Tired') {
-        this.moods.Tired++;
-      }
-      if (data.mood === 'Stressed') {
-        this.moods.Stressed++;
-      }
-      if (data.mood === 'Neutral') {
-        this.moods.Neutral++;
+    for (const data of this.RatingGet) {
+      switch (data.mood) {
+        case 'Angry':
+          this.moods.Angry++;
+          break;
+        case 'Anxious':
+          this.moods.Anxious++;
+          break;
+        case 'Hyper':
+          this.moods.Hyper++;
+          break;
+        case 'Calm':
+          this.moods.Calm++;
+          break;
+        case 'Sad':
+          this.moods.Sad++;
+          break;
+        case 'Motivated':
+          this.moods.Motivated++;
+          break;
+        case 'Happy':
+          this.moods.Happy++;
+          break;
+        case 'Tired':
+          this.moods.Tired++;
+          break;
+        case 'Stressed':
+          this.moods.Stressed++;
+          break;
+        case 'Neutral':
+          this.moods.Neutral++;
+          break;
       }
     }
     const PieChart2 = [
