@@ -2,7 +2,7 @@
   <h1>Rate</h1>
   <div class="underLine"></div>
   <form nz-form [formGroup]=RateForm (ngSubmit)="PostRating()">
-    <nz-card>
+    <div class="postRateCard">
       <nz-form-item>
         <nz-form-control nzErrorTip="Please choose a date">
           <nz-input-group>
@@ -15,7 +15,7 @@
         <nz-form-control nzErrorTip="Please select a rating">
           <nz-input-group>
             <nz-form-label [nzSm]="6" [nzXs]="24">* Rating</nz-form-label>
-            <nz-input-number formControlName="rating" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number>
+            <nz-input-number formControlName="rating" [nzMin]="1" [nzMax]="10" [nzStep]="1" nzPlaceHolder="Number"></nz-input-number>
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
@@ -48,6 +48,6 @@
         </nz-form-control>
       </nz-form-item>
       <button nz-button type="submit" class="postBtn" [disabled]="!RateForm.valid" [nzLoading]="postLoad">Post</button>
-    </nz-card>
+    </div>
   </form>
 </div>
