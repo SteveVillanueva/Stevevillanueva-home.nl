@@ -1,33 +1,54 @@
-h1 {
-  text-align: center;
+@media screen and (max-width: 1900px) {
+  .charts {
+    .charts {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }
 
-.statistic {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  height: 100%;
-
+@media screen and (min-width: 1900px) {
+  .charts {
+    display: flex;
+    flex-direction: row;
+  }
 }
-
-.moodPercent {
-  padding: 24px;
-  width: 500px;
+.charts {
   border: 1px solid rgba(184, 182, 182, 0.486);
+  padding: 24px;
+  width: 100%;
+  justify-content: space-around;
+
+  div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+h1,
+h4,
+nz-statistic {
+  text-align: center;
 }
 
 .ratePercent {
   display: flex;
-  flex-direction: column;
-  border: 1px solid rgba(184, 182, 182, 0.486);
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row;
   padding: 24px;
-  height: 560px;
-  margin-right: 10px;
 
-}
+  .avg {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    border: 1px solid rgba(184, 182, 182, 0.486);
+    padding: 24px;
+    height: 600px;
+  }
 
- nz-statistic {
-  text-align: center;
+  .progressDiv {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
 }

@@ -78,6 +78,7 @@ export class StatisticComponent implements OnInit {
   yAxisLabel = 'rating';
   timeline = true;
 
+
   // options pie chart
   showLegend = true;
   explodeSlices = false;
@@ -99,10 +100,12 @@ export class StatisticComponent implements OnInit {
   constructor(private datePipe: DatePipe, public rate: RatingService) { }
 
   ngOnInit(): void {
+    this.onChangeMonth(new Date())
   }
 
   onChangeMonth(result: Date): void {
-    this.month = this.datePipe.transform(result, 'yyyy-MM-dd h:mm:ss');
+    console.log(result)
+    this.month = this.datePipe.transform(result, 'yyyy-MM-dd');
     this.rate.getMonth(this.month).subscribe(
       data => { this.RatingGet = data, this.ratingLength = data.length; },
       err => { },
@@ -143,11 +146,11 @@ export class StatisticComponent implements OnInit {
   }
 
   onChangeMonthRate(result: Date): void {
-    this.month = this.datePipe.transform(result, 'yyyy-MM-dd h:mm:ss');
+    this.month = this.datePipe.transform(result, 'yyyy-MM-dd');
   }
 
   onChangeYear(result: Date): void {
-    this.year = this.datePipe.transform(result, 'yyyy-MM-dd h:mm:ss');
+    this.year = this.datePipe.transform(result, 'yyyy-MM-dd');
     this.rate.getYear(this.year).subscribe(
       data => { this.RatingGet = data, this.ratingLength = data.length; },
       err => { },
