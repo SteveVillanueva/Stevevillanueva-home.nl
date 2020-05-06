@@ -106,6 +106,10 @@ export class StatisticComponent implements OnInit {
   onChangeMonth(result: Date): void {
     console.log(result);
     this.month = this.datePipe.transform(result, 'yyyy-MM-dd');
+    if (this.month == null) {
+      this.month = new Date().toString();
+      this.month = this.datePipe.transform(this.month, 'yyyy-MM-dd');
+    }
     this.rate.getMonth(this.month).subscribe(
       data => { this.RatingGet = data, this.ratingLength = data.length; },
       err => { },
@@ -120,7 +124,6 @@ export class StatisticComponent implements OnInit {
       data => { this.RatingGetStat = data; },
       err => { },
       () => {
-
         this.graphdata = this.RatingGetStat.map(x => {
           return {
             name: x.date,
