@@ -91,7 +91,7 @@ export class StatisticComponent implements OnInit {
 
   // color scheme for pie chart
   colorSchemePie = {
-    domain: ['#F8B6B2', '#FCD9AF', '#FCF6B8', '#BCFBB3', '#AAE0F9', '#CAB7F3', '#FFC2E6', '#CECCCD', '#6F6D6E', '#FFFF00']
+    domain: ['#f2746c', '#f9b665', '#f9ed6f', '#7cf76a', '#63c6f4', '#9a75e8', '#ff76c7', '#CECCCD', '#6F6D6E', '#FFFF00']
   };
 
 
@@ -100,11 +100,11 @@ export class StatisticComponent implements OnInit {
   constructor(private datePipe: DatePipe, public rate: RatingService) { }
 
   ngOnInit(): void {
-    this.onChangeMonth(new Date())
+    this.onChangeMonth(new Date());
   }
 
   onChangeMonth(result: Date): void {
-    console.log(result)
+    console.log(result);
     this.month = this.datePipe.transform(result, 'yyyy-MM-dd');
     this.rate.getMonth(this.month).subscribe(
       data => { this.RatingGet = data, this.ratingLength = data.length; },
