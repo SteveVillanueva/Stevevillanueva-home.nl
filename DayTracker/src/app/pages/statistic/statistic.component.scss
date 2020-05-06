@@ -23,6 +23,12 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    .chartTitlePie {
+      width: 580px;
+    }
+    .chartTitleLine {
+      width: 650px;
+    }
   }
 }
 
@@ -43,7 +49,6 @@ nz-statistic {
     flex-direction: column;
     border: 1px solid rgba(184, 182, 182, 0.486);
     padding: 24px;
-    height: 600px;
   }
 
   .progressDiv {

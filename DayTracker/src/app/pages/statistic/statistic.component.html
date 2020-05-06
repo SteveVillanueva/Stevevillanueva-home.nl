@@ -25,13 +25,13 @@
       </div>
       <div class="charts">
         <div style="width: 100%; height: 500px;">
-          <h4>Moods</h4>
+          <h4 class="chartTitlePie">Moods</h4>
           <ngx-charts-pie-chart [view]="view" [scheme]="colorSchemePie" [results]="PieChart" [legend]="showLegend"
             [explodeSlices]="explodeSlices" [labels]="showLabels" [doughnut]="doughnut">
           </ngx-charts-pie-chart>
         </div>
         <div style="width: 100%; height: 500px;">
-          <h4>Ratings</h4>
+          <h4 class="chartTitleLine">Ratings</h4>
           <ngx-charts-line-chart [view]="view" [scheme]="colorSchemeLine" [results]="LineChart" [legend]="legend"
             [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis"
             [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [timeline]="timeline" [maxXAxisTickLength]=10
