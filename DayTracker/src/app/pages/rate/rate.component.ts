@@ -23,12 +23,19 @@ export class RateComponent implements OnInit {
     mood: [null, Validators.required],
     comment: [null],
   });
+  postLoad = false;
   constructor(public rate: RatingService, private route: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
 
   PostRating(): void {
+    // activates load on button
+    this.postLoad = true;
+    setTimeout(() => {
+      this.postLoad = false;
+    }, 4500);
+
     // tslint:disable-next-line: forin
     for (const i in this.RateForm.controls) {
       this.RateForm.controls[i].markAsDirty();
@@ -37,9 +44,10 @@ export class RateComponent implements OnInit {
     this.RatingPost = this.RateForm.value;
     console.log(this.RatingPost.date);
     this.rate.postRatings(this.RatingPost).subscribe(
-      data => { },
-      err => { console.log('test') },
+      data => {  },
+      err => { },
       () => { this.route.navigateByUrl('result/201'); }
     );
+
   }
 }

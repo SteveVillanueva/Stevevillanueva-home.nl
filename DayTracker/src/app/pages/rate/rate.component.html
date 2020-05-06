@@ -47,7 +47,7 @@
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
-      <button nz-button type="submit" class="postBtn" [disabled]="!RateForm.valid">Post</button>
+      <button nz-button type="submit" class="postBtn" [disabled]="!RateForm.valid" [nzLoading]="postLoad">Post</button>
     </nz-card>
   </form>
 </div>
