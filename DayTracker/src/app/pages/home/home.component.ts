@@ -19,12 +19,14 @@ export class HomeComponent implements OnInit {
   };
   mockData: Ratings;
 
-  constructor(public rate: RatingService) { }
+  constructor(public rate: RatingService, public mock: MockService) { }
 
   ngOnInit(): void {
 
 
-    this.generateRatings();
+    this.mock.getRatings().subscribe( data => {
+      this.RatingGet = data;
+    });
   }
   randomDate(start, end) {
     return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
@@ -65,7 +67,7 @@ export class HomeComponent implements OnInit {
       data => {
         this.RatingGet = data,
           // tslint:disable-next-line: only-arrow-functions
-          console.log(this.RatingGet)
+          console.log(this.RatingGet);
         this.RatingGet.map(function (RatingGet) {
           RatingGet.date = new Date(RatingGet.date);
         });

@@ -1,4 +1,11 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+
+import { Ratings } from '../Interfaces/RatingGet';
+import { PostRating } from '../Interfaces/RatingPost';
+import { RatingUpdate } from '../Interfaces/RatingUpdate';
+import { RatingStatistic } from '../Interfaces/RatingGet';
 
 @Injectable({
   providedIn: 'root'
@@ -6,4 +13,27 @@ import { Injectable } from '@angular/core';
 export class MockService {
 
   constructor() { }
+
+  RatingGet: Array<Ratings> = [];
+  mockData: Ratings;
+
+
+
+  getRatings(): Observable<Ratings[]> {
+    // return this.http.get<Ratings[]>('ratings');
+    return of([
+      {
+        date: new Date('2020-04-26'),
+        rating: 5,
+        mood: 'Angry',
+        comment: 'test'
+      },
+      {
+        date: new Date('2020-04-27'),
+        rating: 8,
+        mood: 'Neutral',
+        comment: 'text'
+      }
+    ]);
+  }
 }
