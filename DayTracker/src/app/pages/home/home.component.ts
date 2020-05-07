@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Ratings } from '../../Interfaces/RatingGet';
 import { PostRating } from '../../Interfaces/RatingPost';
 import { RatingService } from '../rating.service';
+import { MockService } from '../mock.service';
 
 @Component({
   selector: 'app-home',
@@ -53,6 +54,10 @@ export class HomeComponent implements OnInit {
     }
     console.log(this.RatingGet);
     return this.RatingGet;
+  }
+
+  getMockRating(): void {
+
   }
 
   GetRating(): void {
