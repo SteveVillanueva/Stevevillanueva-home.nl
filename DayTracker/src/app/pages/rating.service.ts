@@ -38,10 +38,6 @@ export class RatingService {
     return this.http.get<Ratings[]>(`ratingMonth/${Month}`);
   }
 
-  getYear(Year: string): Observable<Ratings[]> {
-    return this.http.get<Ratings[]>(`ratingYear/${Year}`);
-  }
-
   getMonthRating(Month: string): Observable<RatingStatistic[]> {
     return this.http.get<RatingStatistic[]>(`ratingMonthGraph/${Month}`);
   }

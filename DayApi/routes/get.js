@@ -29,18 +29,6 @@ module.exports = ({ router }) => {
     }).select({ _id: 0, rating: 1, date: 2 });
   })
 
-  // get all data from selected month
-  router.get('/ratingYear/:year', async (ctx, next) => {
-    console.log(ctx.request.body);
-    let year = ctx.request.path;
-    year = splitUrl(year);
-    let start = new Date(year.getFullYear(), 1, -29);
-    let end = new Date(year.getFullYear(), 11, 31);
-    ctx.body = await Rating.find({
-      date: { $lt: end, $gt: start }
-    });
-  })
-
   // get request for rating on specific date
   router.get('/rating/:date', async (ctx, next) => {
     let date = ctx.request.path;

@@ -17,7 +17,6 @@ import { Moods } from '../../Interfaces/Moods';
 })
 export class StatisticComponent implements OnInit {
   month: string;
-  year: string;
   RatingGet: Array<Ratings>;
   RatingGetStat: Array<RatingStatistic>;
   graphdata;
@@ -153,19 +152,6 @@ export class StatisticComponent implements OnInit {
     this.month = this.datePipe.transform(result, 'yyyy-MM-dd');
   }
 
-  onChangeYear(result: Date): void {
-    this.year = this.datePipe.transform(result, 'yyyy-MM-dd');
-    this.rate.getYear(this.year).subscribe(
-      data => { this.RatingGet = data, this.ratingLength = data.length; },
-      err => { },
-      () => {
-        this.ratingTotal = this.totalRating();
-        this.moods = this.totalMoods();
-        this.averageRating = this.ratingTotal / this.ratingLength;
-        this.percent = Math.round(this.ratingLength / 365 * 100);
-      }
-    );
-  }
   totalRating() {
     let total = 0;
     for (const data of this.RatingGet) {
