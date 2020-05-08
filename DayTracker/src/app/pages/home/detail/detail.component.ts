@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Ratings } from '../../../Interfaces/RatingGet';
 import { RatingUpdate } from '../../../Interfaces/RatingUpdate';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
+import { MockService } from '../../mock.service';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class DetailComponent implements OnInit {
     mood: '',
     comment: ''
   };
-  constructor(public rate: RatingService, private route: Router, private fb: FormBuilder) { }
+  constructor(public rate: RatingService, private route: Router, private fb: FormBuilder, public mock: MockService) { }
 
   ngOnInit(): void {
     this.urlDate = this.route.url.substr(this.route.url.indexOf('-') + -4);
@@ -40,8 +41,8 @@ export class DetailComponent implements OnInit {
 
   // gets data from specific date
   GetDetailRating(): void {
-    this.rate.getDetailRating(this.urlDate).subscribe(
-      data => { this.RatingGet = data; }
+    this.mock.getDetailRating().subscribe(
+      data => { this.RatingGet = data[1]; }
     );
   }
 

@@ -94,9 +94,6 @@ export class StatisticComponent implements OnInit {
     domain: ['#f2746c', '#f9b665', '#f9ed6f', '#7cf76a', '#63c6f4', '#9a75e8', '#ff76c7', '#CECCCD', '#6F6D6E', '#FFFF00']
   };
 
-
-
-
   constructor(private datePipe: DatePipe, public rate: RatingService, private mock: MockService) { }
 
   ngOnInit(): void {
