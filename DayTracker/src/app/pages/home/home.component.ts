@@ -52,9 +52,7 @@ export class HomeComponent implements OnInit {
     console.log(this.RatingGet);
     return this.RatingGet;
   }
-
   getMockRating(): void {
-
   }
 
   GetRating(): void {

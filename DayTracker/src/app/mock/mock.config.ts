@@ -6,7 +6,7 @@ export default {
     'https://jsonplaceholder.typicode.com/ratings': {
       handler: getRatings
     }
-  }
+  },
 };
 
 function getRatings() {

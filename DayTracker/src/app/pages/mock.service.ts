@@ -12,7 +12,7 @@ import { RatingStatistic } from '../Interfaces/RatingGet';
 })
 export class MockService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   RatingGet: Array<Ratings> = [];
   mockData: Ratings;
@@ -35,5 +35,13 @@ export class MockService {
         comment: 'text'
       }
     ]);
+  }
+
+  getMonth(Month: string): Observable<Ratings[]> {
+    return this.http.get<Ratings[]>(`ratings`);
+  }
+
+  getMonthRating(Month: string): Observable<RatingStatistic[]> {
+    return this.http.get<RatingStatistic[]>(`ratings`);
   }
 }

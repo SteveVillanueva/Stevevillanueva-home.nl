@@ -8,6 +8,7 @@ import { NgxChartsModule, SeriesHorizontal } from '@swimlane/ngx-charts';
 import { RatingService } from '../rating.service';
 import { Ratings } from 'src/app/Interfaces/RatingGet';
 import { RatingStatistic } from '../../Interfaces/RatingGet';
+import { MockService } from '../mock.service';
 import { Moods } from '../../Interfaces/Moods';
 @Component({
   selector: 'app-statistic',
@@ -97,7 +98,7 @@ export class StatisticComponent implements OnInit {
 
 
 
-  constructor(private datePipe: DatePipe, public rate: RatingService) { }
+  constructor(private datePipe: DatePipe, public rate: RatingService, private mock: MockService) { }
 
   ngOnInit(): void {
     this.onChangeMonth(new Date());
@@ -110,7 +111,7 @@ export class StatisticComponent implements OnInit {
       this.month = new Date().toString();
       this.month = this.datePipe.transform(this.month, 'yyyy-MM-dd');
     }
-    this.rate.getMonth(this.month).subscribe(
+    this.mock.getMonth(this.month).subscribe(
       data => { this.RatingGet = data, this.ratingLength = data.length; },
       err => { },
       () => {
@@ -120,7 +121,7 @@ export class StatisticComponent implements OnInit {
         this.percent = Math.round(this.ratingLength / 31 * 100);
       }
     );
-    this.rate.getMonthRating(this.month).subscribe(
+    this.mock.getMonthRating(this.month).subscribe(
       data => { this.RatingGetStat = data; },
       err => { },
       () => {
