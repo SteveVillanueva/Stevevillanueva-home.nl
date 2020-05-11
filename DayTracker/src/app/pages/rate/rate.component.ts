@@ -3,6 +3,7 @@ import { RatingService } from '../rating.service';
 import { Router } from '@angular/router';
 import { PostRating } from '../../Interfaces/RatingPost';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
+import { MockService } from '../mock.service';
 
 @Component({
   selector: 'app-rate',
@@ -24,7 +25,7 @@ export class RateComponent implements OnInit {
     comment: [null],
   });
   postLoad = false;
-  constructor(public rate: RatingService, private route: Router, private fb: FormBuilder) { }
+  constructor(public rate: RatingService, private route: Router, private fb: FormBuilder, private mock: MockService) { }
 
   ngOnInit(): void {
   }
@@ -43,8 +44,8 @@ export class RateComponent implements OnInit {
     }
     this.RatingPost = this.RateForm.value;
     console.log(this.RatingPost.date);
-    this.rate.postRatings(this.RatingPost).subscribe(
-      data => {  },
+    this.mock.postRatings(this.RatingPost).subscribe(
+      data => { },
       err => { },
       () => { this.route.navigateByUrl('result/201'); }
     );

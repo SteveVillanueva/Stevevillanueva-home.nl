@@ -15,10 +15,10 @@ export class MockService {
   constructor(private http: HttpClient) { }
   RatingGet: Array<Ratings> = [];
   mockData: Ratings;
-
+  test;
   getRatings(): Observable<Ratings[]> {
     // return this.http.get<Ratings[]>('ratings');
-    return of([
+    return this.test = of([
       {
         date: new Date('2020-04-26'),
         rating: 5,
