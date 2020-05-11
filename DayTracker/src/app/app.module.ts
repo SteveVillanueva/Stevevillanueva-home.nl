@@ -13,6 +13,10 @@ import { BaseInterceptor } from './Interceptor/base.interceptor';
 import { ErrorInterceptor } from './Interceptor/error.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StatisticModule } from '../app/pages/statistic/statistic.module';
+import { MockModule } from './mock/mock.module';
+import { environment } from 'src/environments/environment.mock';
+
+let extraModules = environment.mockApi ? [MockModule] : [];
 
 @NgModule({
   declarations: [
@@ -27,8 +31,11 @@ import { StatisticModule } from '../app/pages/statistic/statistic.module';
     BrowserAnimationsModule,
     HomeRoutingModule,
     ReactiveFormsModule,
-    StatisticModule
+    StatisticModule,
+    extraModules
   ],
+
+
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
@@ -42,6 +49,6 @@ import { StatisticModule } from '../app/pages/statistic/statistic.module';
     },
     { provide: NZ_I18N, useValue: en_US },
     DatePipe],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

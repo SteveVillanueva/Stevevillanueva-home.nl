@@ -45,4 +45,8 @@ export class MockService {
   getDetailRating(): Observable<Ratings> {
     return this.http.get<Ratings>(`ratings`);
   }
+
+  postRatings(Rating: PostRating): Observable<PostRating> {
+    return this.http.post<PostRating>('ratingPost', Rating);
+  }
 }

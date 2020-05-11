@@ -6,16 +6,19 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { default as mockEndpoints } from '../mock/mock.config';
+import { default as mockEndpoints } from './mock.config';
+
+let currentMockEndpoint;
 
 @Injectable()
-export class BaseInterceptor implements HttpInterceptor {
+export class MockInterceptor implements HttpInterceptor {
 
   constructor() { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const apiReq = request.clone({ url: `https://jsonplaceholder.typicode.com/${request.url}` });
-    return next.handle(apiReq);
-
+    currentMockEndpoint = mockEndpoints[apiReq.method] && mockEndpoints[apiReq.method][apiReq.url] || null;
+    // checks if current request comes from mock api or not
+    return currentMockEndpoint ? currentMockEndpoint.handler() : next.handle(apiReq);
   }
 }
