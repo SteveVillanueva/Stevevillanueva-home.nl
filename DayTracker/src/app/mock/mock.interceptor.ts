@@ -19,6 +19,6 @@ export class MockInterceptor implements HttpInterceptor {
     const apiReq = request.clone({ url: `https://jsonplaceholder.typicode.com/${request.url}` });
     currentMockEndpoint = mockEndpoints[request.method] && mockEndpoints[apiReq.method][apiReq.url] || null;
     // checks if current request comes from mock api or not
-    return currentMockEndpoint ? currentMockEndpoint.handler() : next.handle(apiReq);
+    return currentMockEndpoint.handler(request);
   }
 }

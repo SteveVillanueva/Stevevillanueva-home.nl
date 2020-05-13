@@ -45,7 +45,7 @@ export class RateComponent implements OnInit {
     this.RatingPost = this.RateForm.value;
     console.log(this.RatingPost.date);
     this.mock.postRatings(this.RatingPost).subscribe(
-      data => { },
+      data => { console.log(this.RatingPost) },
       err => { },
       () => { this.route.navigateByUrl('result/201'); }
     );

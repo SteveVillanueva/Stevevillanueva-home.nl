@@ -1,14 +1,22 @@
-import { HttpResponse } from '@angular/common/http';
-import { of } from 'rxjs';
+import { HttpResponse, HttpHeaderResponse, HttpRequest } from '@angular/common/http';
+import { of, Observable } from 'rxjs';
 import { Ratings } from '../Interfaces/RatingGet';
-import * as Rating from './mockData.json';
+import { PostRating } from '../Interfaces/RatingPost'
 
-const json = Rating;
-const data = JSON.stringify(json);
-const data2 = JSON.parse(data);
+let data = [];
+let data2;
+import('./mockData.json').then(result => {
+  data = result;
+  console.log(data);
+  const json = JSON.stringify(data);
+  data2 = JSON.parse(json);
+
+});
+
+
+
 
 export default {
-
   GET: {
     'https://jsonplaceholder.typicode.com/ratings': {
       handler: getRatings,
@@ -16,26 +24,22 @@ export default {
   },
   POST: {
     'https://jsonplaceholder.typicode.com/ratingPost': {
-      handler: getRatings
+      handler: postRatings
     }
   }
 };
 
 function getRatings() {
-
-
   console.log(data2)
   return of(new HttpResponse({
     status: 200, body: data2.default
   }));
 }
 
-function postRatings(Ratings) {
-  console.log('Rating');
-  console.log('test');
-
+function postRatings(request: HttpRequest<Ratings[]>) {
+  data2.default.push(request.body);
   return of(new HttpResponse({
-    status: 200, body: Rating
+    status: 200,
+    body: data2.default,
   }));
-
 }
